@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
 export type StyleType = 'modern' | 'bold' | 'classic'
-export type FontType = 'helvetica' | 'times' | 'courier' | 'inter' | 'playfair' | 'roboto' | 'montserrat'
+export type FontType = 'helvetica' | 'arial' | 'georgia' | 'times' | 'courier' | 'inter' | 'lato' | 'opensans' | 'poppins' | 'raleway' | 'playfair' | 'merriweather' | 'roboto' | 'montserrat' | 'nunito' | 'worksans'
 
 interface GeneratorContextType {
   companyName: string

@@ -8,6 +8,32 @@ This project is a Next.js lead magnet application enabling social media managers
 
 Preferred communication style: Simple, everyday language.
 
+## Recent Changes
+
+**November 13, 2025 - Expanded Font Selection for Professional Brands**
+- Expanded font selector from 7 to 16 professional brand fonts
+- Added popular professional fonts: Arial, Georgia, Lato, Open Sans, Poppins, Raleway, Merriweather, Nunito, and Work Sans
+- Retained existing fonts: Helvetica, Times New Roman, Courier, Inter, Playfair Display, Roboto, Montserrat
+- Updated FontType in GeneratorContext.tsx to include all 16 font options
+- Updated font mappings in LivePreview.tsx for browser-safe fallbacks
+- Updated font mappings in PdfDocument.tsx for PDF generation compatibility
+
+**November 13, 2025 - Style Template Updates**
+- Removed "Powered by Hero" footer from all three style templates (Modern, Bold, Classic)
+- Changed Bold style header from "Pro Video Tips" to "Video Filming Tips"
+- Increased checkmark (✓) and X (✗) icon size in Bold style from default to 14pt for better visibility
+- Reorganized color palette to 36 colors (6 rows × 6 columns) organized by color family
+- Added white (#FFFFFF) as first color option in palette
+- Color picker panels now open upward instead of downward
+- Changed default primary color from blue to black (#000000)
+
+**November 13, 2025 - Real-Time Background Removal Feature**
+- Added "Magic-Remove Background" checkbox with instant preview
+- Background removal processes immediately when checkbox is checked
+- Created `/api/remove-background` route for client-side API calls
+- Implemented loading spinner and disabled state during processing
+- PDF generation uses pre-processed logo to avoid duplicate API calls
+
 ## System Architecture
 
 ### Frontend Architecture

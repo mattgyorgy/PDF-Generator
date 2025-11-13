@@ -27,12 +27,21 @@ const styles = [
 
 const fonts = [
   { id: 'helvetica' as FontType, name: 'Helvetica', preview: 'Arial, sans-serif' },
+  { id: 'arial' as FontType, name: 'Arial', preview: 'Arial, sans-serif' },
+  { id: 'georgia' as FontType, name: 'Georgia', preview: 'Georgia, serif' },
   { id: 'times' as FontType, name: 'Times New Roman', preview: 'Georgia, serif' },
   { id: 'courier' as FontType, name: 'Courier', preview: 'Courier New, monospace' },
   { id: 'inter' as FontType, name: 'Inter', preview: 'Inter, sans-serif' },
+  { id: 'lato' as FontType, name: 'Lato', preview: 'Lato, sans-serif' },
+  { id: 'opensans' as FontType, name: 'Open Sans', preview: 'Open Sans, sans-serif' },
+  { id: 'poppins' as FontType, name: 'Poppins', preview: 'Poppins, sans-serif' },
+  { id: 'raleway' as FontType, name: 'Raleway', preview: 'Raleway, sans-serif' },
   { id: 'playfair' as FontType, name: 'Playfair Display', preview: 'Playfair Display, serif' },
+  { id: 'merriweather' as FontType, name: 'Merriweather', preview: 'Merriweather, serif' },
   { id: 'roboto' as FontType, name: 'Roboto', preview: 'Roboto, sans-serif' },
   { id: 'montserrat' as FontType, name: 'Montserrat', preview: 'Montserrat, sans-serif' },
+  { id: 'nunito' as FontType, name: 'Nunito', preview: 'Nunito, sans-serif' },
+  { id: 'worksans' as FontType, name: 'Work Sans', preview: 'Work Sans, sans-serif' },
 ]
 
 const colorPalette = [

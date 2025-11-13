@@ -280,12 +280,21 @@ const rules = [
 export default function PdfDocument({ companyName, primaryColor, secondaryColor, font, logoImageUrl, style = 'modern' }: PdfDocumentProps) {
   const fontMapping: Record<string, string> = {
     helvetica: 'Helvetica',
+    arial: 'Helvetica',
+    georgia: 'Times-Roman',
     times: 'Times-Roman',
     courier: 'Courier',
     inter: 'Helvetica',
+    lato: 'Helvetica',
+    opensans: 'Helvetica',
+    poppins: 'Helvetica',
+    raleway: 'Helvetica',
     playfair: 'Times-Roman',
+    merriweather: 'Times-Roman',
     roboto: 'Helvetica',
     montserrat: 'Helvetica',
+    nunito: 'Helvetica',
+    worksans: 'Helvetica',
   }
   
   const pdfFont = fontMapping[font] || 'Helvetica'

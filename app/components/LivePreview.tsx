@@ -63,12 +63,21 @@ export default function LivePreview() {
   
   const fontMapping: Record<string, string> = {
     helvetica: 'Arial, sans-serif',
+    arial: 'Arial, sans-serif',
+    georgia: 'Georgia, serif',
     times: 'Georgia, serif',
     courier: 'Courier New, monospace',
     inter: 'Inter, sans-serif',
+    lato: 'Lato, sans-serif',
+    opensans: 'Open Sans, sans-serif',
+    poppins: 'Poppins, sans-serif',
+    raleway: 'Raleway, sans-serif',
     playfair: 'Playfair Display, serif',
+    merriweather: 'Merriweather, serif',
     roboto: 'Roboto, sans-serif',
     montserrat: 'Montserrat, sans-serif',
+    nunito: 'Nunito, sans-serif',
+    worksans: 'Work Sans, sans-serif',
   }
   
   const fontFamily = fontMapping[font] || 'Arial, sans-serif'
