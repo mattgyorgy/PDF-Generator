@@ -44,12 +44,14 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData()
     const email = formData.get('email') as string
     const companyName = formData.get('companyName') as string
-    const brandColor = formData.get('brandColor') as string
+    const primaryColor = formData.get('primaryColor') as string
+    const secondaryColor = formData.get('secondaryColor') as string
+    const font = formData.get('font') as string
     const style = (formData.get('style') as string) || 'modern'
     const removeBackground = formData.get('removeBackground') === 'true'
     const logo = formData.get('logo') as File
 
-    if (!email || !companyName || !brandColor || !logo) {
+    if (!email || !companyName || !primaryColor || !logo) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -73,7 +75,9 @@ export async function POST(request: NextRequest) {
     const pdfBuffer = await renderToBuffer(
       React.createElement(PdfDocument, {
         companyName,
-        brandColor,
+        primaryColor,
+        secondaryColor,
+        font,
         logoImageUrl: logoDataUrl,
         style: style as 'modern' | 'bold' | 'classic',
       }) as any

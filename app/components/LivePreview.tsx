@@ -41,10 +41,22 @@ const rules = [
 ]
 
 export default function LivePreview() {
-  const { companyName, brandColor, logoPreviewUrl, style } = useGenerator()
+  const { companyName, primaryColor, secondaryColor, font, logoPreviewUrl, style } = useGenerator()
+  
+  const fontMapping: Record<string, string> = {
+    helvetica: 'Arial, sans-serif',
+    times: 'Georgia, serif',
+    courier: 'Courier New, monospace',
+    inter: 'Inter, sans-serif',
+    playfair: 'Playfair Display, serif',
+    roboto: 'Roboto, sans-serif',
+    montserrat: 'Montserrat, sans-serif',
+  }
+  
+  const fontFamily = fontMapping[font] || 'Arial, sans-serif'
 
   const renderModernStyle = () => (
-    <div className="p-8 h-full flex flex-col">
+    <div className="p-8 h-full flex flex-col" style={{ fontFamily }}>
       <div className="text-center mb-6">
         {logoPreviewUrl ? (
           <img
@@ -57,10 +69,10 @@ export default function LivePreview() {
             [Your Logo]
           </div>
         )}
-        <h1 className="text-xl font-bold mb-2" style={{ color: brandColor }}>
+        <h1 className="text-xl font-bold mb-2" style={{ color: primaryColor, fontFamily }}>
           How to Film Pro-Quality Video on Your Phone
         </h1>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600" style={{ fontFamily }}>
           A 5-step guide from your friends at {companyName || '[Your Company]'}
         </p>
       </div>
@@ -69,10 +81,10 @@ export default function LivePreview() {
         {rules.map((rule, index) => {
           const Icon = rule.icon
           return (
-            <div key={index} className="border-l-4 pl-3 py-1" style={{ borderColor: brandColor }}>
+            <div key={index} className="border-l-4 pl-3 py-1" style={{ borderColor: primaryColor }}>
               <div className="flex items-center gap-2 mb-1">
-                <Icon style={{ color: brandColor, fontSize: '18px' }} />
-                <h3 className="font-bold text-xs" style={{ color: brandColor }}>
+                <Icon style={{ color: primaryColor, fontSize: '18px' }} />
+                <h3 className="font-bold text-xs" style={{ color: primaryColor }}>
                   {index + 1}. {rule.title}
                 </h3>
               </div>
@@ -94,7 +106,7 @@ export default function LivePreview() {
   )
 
   const renderBoldStyle = () => (
-    <div className="p-6 h-full flex flex-col bg-gray-50">
+    <div className="p-6 h-full flex flex-col bg-gray-50" style={{ fontFamily }}>
       <div className="text-center mb-6 bg-gray-900 text-white p-4 -mx-6 -mt-6">
         {logoPreviewUrl ? (
           <img
@@ -107,10 +119,10 @@ export default function LivePreview() {
             [Your Logo]
           </div>
         )}
-        <h1 className="text-2xl font-black mb-2 uppercase tracking-tight" style={{ color: brandColor }}>
+        <h1 className="text-2xl font-black mb-2 uppercase tracking-tight" style={{ color: primaryColor, fontFamily }}>
           Pro Video Tips
         </h1>
-        <p className="text-xs font-semibold opacity-90">
+        <p className="text-xs font-semibold opacity-90" style={{ fontFamily }}>
           From {companyName || '[Your Company]'}
         </p>
       </div>
@@ -119,12 +131,12 @@ export default function LivePreview() {
         {rules.map((rule, index) => {
           const Icon = rule.icon
           return (
-            <div key={index} className="bg-white p-3 rounded-lg shadow-sm border-l-4" style={{ borderColor: brandColor }}>
+            <div key={index} className="bg-white p-3 rounded-lg shadow-sm border-l-4" style={{ borderColor: primaryColor }}>
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-white text-xs" style={{ backgroundColor: brandColor }}>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center font-black text-white text-xs" style={{ backgroundColor: primaryColor }}>
                   {index + 1}
                 </div>
-                <h3 className="font-black text-xs uppercase" style={{ color: brandColor }}>
+                <h3 className="font-black text-xs uppercase" style={{ color: primaryColor }}>
                   {rule.title}
                 </h3>
               </div>
@@ -146,7 +158,7 @@ export default function LivePreview() {
   )
 
   const renderClassicStyle = () => (
-    <div className="p-10 h-full flex flex-col bg-amber-50">
+    <div className="p-10 h-full flex flex-col bg-amber-50" style={{ fontFamily }}>
       <div className="text-center mb-8 pb-6 border-b-2 border-gray-300">
         {logoPreviewUrl ? (
           <img
@@ -159,10 +171,10 @@ export default function LivePreview() {
             [Your Logo]
           </div>
         )}
-        <h1 className="text-lg font-serif font-bold mb-2 tracking-wide" style={{ color: brandColor }}>
+        <h1 className="text-lg font-serif font-bold mb-2 tracking-wide" style={{ color: primaryColor, fontFamily }}>
           Professional Video Guidelines
         </h1>
-        <p className="text-xs text-gray-700 italic">
+        <p className="text-xs text-gray-700 italic" style={{ fontFamily }}>
           Presented by {companyName || '[Your Company]'}
         </p>
       </div>
@@ -173,11 +185,11 @@ export default function LivePreview() {
           return (
             <div key={index} className="pb-4 border-b border-gray-300">
               <div className="flex items-start gap-3 mb-2">
-                <div className="w-6 h-6 rounded-full border-2 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5" style={{ borderColor: brandColor, color: brandColor }}>
+                <div className="w-6 h-6 rounded-full border-2 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5" style={{ borderColor: primaryColor, color: primaryColor }}>
                   {index + 1}
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-bold text-xs mb-2 uppercase tracking-wide" style={{ color: brandColor }}>
+                  <h3 className="font-bold text-xs mb-2 uppercase tracking-wide" style={{ color: primaryColor }}>
                     {rule.title}
                   </h3>
                   <p className="text-xs text-gray-700 mb-1 leading-relaxed">

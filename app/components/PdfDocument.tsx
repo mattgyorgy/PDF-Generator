@@ -242,7 +242,9 @@ const classicStyles = StyleSheet.create({
 
 interface PdfDocumentProps {
   companyName: string
-  brandColor: string
+  primaryColor: string
+  secondaryColor: string
+  font: string
   logoImageUrl: string
   style?: StyleType
 }
@@ -275,43 +277,54 @@ const rules = [
   },
 ]
 
-export default function PdfDocument({ companyName, brandColor, logoImageUrl, style = 'modern' }: PdfDocumentProps) {
+export default function PdfDocument({ companyName, primaryColor, secondaryColor, font, logoImageUrl, style = 'modern' }: PdfDocumentProps) {
+  const fontMapping: Record<string, string> = {
+    helvetica: 'Helvetica',
+    times: 'Times-Roman',
+    courier: 'Courier',
+    inter: 'Helvetica',
+    playfair: 'Times-Roman',
+    roboto: 'Helvetica',
+    montserrat: 'Helvetica',
+  }
+  
+  const pdfFont = fontMapping[font] || 'Helvetica'
   if (style === 'bold') {
     return (
       <Document>
-        <Page size="A4" style={boldStyles.page}>
+        <Page size="A4" style={[boldStyles.page, { fontFamily: pdfFont }]}>
           <View style={boldStyles.header}>
             <Image src={logoImageUrl} style={boldStyles.logo} />
-            <Text style={[boldStyles.mainHeadline, { color: brandColor }]}>
+            <Text style={[boldStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
               PRO VIDEO TIPS
             </Text>
-            <Text style={boldStyles.subHeadline}>
+            <Text style={[boldStyles.subHeadline, { fontFamily: pdfFont }]}>
               From {companyName}
             </Text>
           </View>
 
           <View style={boldStyles.rulesContainer}>
             {rules.map((rule, index) => (
-              <View key={index} style={[boldStyles.rule, { borderLeftColor: brandColor }]}>
+              <View key={index} style={[boldStyles.rule, { borderLeftColor: primaryColor }]}>
                 <View style={boldStyles.ruleHeader}>
-                  <Text style={[boldStyles.ruleNumber, { backgroundColor: brandColor }]}>
+                  <Text style={[boldStyles.ruleNumber, { backgroundColor: primaryColor, fontFamily: pdfFont }]}>
                     {index + 1}
                   </Text>
-                  <Text style={[boldStyles.ruleTitle, { color: brandColor }]}>
+                  <Text style={[boldStyles.ruleTitle, { color: primaryColor, fontFamily: pdfFont }]}>
                     {rule.title}
                   </Text>
                 </View>
-                <Text style={boldStyles.ruleText}>
+                <Text style={[boldStyles.ruleText, { fontFamily: pdfFont }]}>
                   <Text style={{ fontWeight: 'bold' }}>✓</Text> {rule.doText}
                 </Text>
-                <Text style={[boldStyles.ruleText, { color: '#666666' }]}>
+                <Text style={[boldStyles.ruleText, { color: '#666666', fontFamily: pdfFont }]}>
                   <Text style={{ fontWeight: 'bold' }}>✗</Text> {rule.dontText}
                 </Text>
               </View>
             ))}
           </View>
 
-          <Text style={boldStyles.footer}>POWERED BY HERO</Text>
+          <Text style={[boldStyles.footer, { fontFamily: pdfFont }]}>POWERED BY HERO</Text>
         </Page>
       </Document>
     )
@@ -320,13 +333,13 @@ export default function PdfDocument({ companyName, brandColor, logoImageUrl, sty
   if (style === 'classic') {
     return (
       <Document>
-        <Page size="A4" style={classicStyles.page}>
+        <Page size="A4" style={[classicStyles.page, { fontFamily: pdfFont }]}>
           <View style={classicStyles.header}>
             <Image src={logoImageUrl} style={classicStyles.logo} />
-            <Text style={[classicStyles.mainHeadline, { color: brandColor }]}>
+            <Text style={[classicStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
               Professional Video Guidelines
             </Text>
-            <Text style={classicStyles.subHeadline}>
+            <Text style={[classicStyles.subHeadline, { fontFamily: pdfFont }]}>
               Presented by {companyName}
             </Text>
           </View>
@@ -335,24 +348,24 @@ export default function PdfDocument({ companyName, brandColor, logoImageUrl, sty
             {rules.map((rule, index) => (
               <View key={index} style={classicStyles.rule}>
                 <View style={classicStyles.ruleHeader}>
-                  <Text style={[classicStyles.ruleNumber, { borderColor: brandColor, color: brandColor }]}>
+                  <Text style={[classicStyles.ruleNumber, { borderColor: primaryColor, color: primaryColor, fontFamily: pdfFont }]}>
                     {index + 1}
                   </Text>
-                  <Text style={[classicStyles.ruleTitle, { color: brandColor }]}>
+                  <Text style={[classicStyles.ruleTitle, { color: primaryColor, fontFamily: pdfFont }]}>
                     {rule.title}
                   </Text>
                 </View>
-                <Text style={classicStyles.ruleText}>
-                  <Text style={{ fontFamily: 'Times-Bold' }}>Recommended:</Text> {rule.doText}
+                <Text style={[classicStyles.ruleText, { fontFamily: pdfFont }]}>
+                  <Text style={{ fontFamily: pdfFont }}>Recommended:</Text> {rule.doText}
                 </Text>
-                <Text style={[classicStyles.ruleText, { color: '#666666' }]}>
-                  <Text style={{ fontFamily: 'Times-Bold' }}>Avoid:</Text> {rule.dontText}
+                <Text style={[classicStyles.ruleText, { color: '#666666', fontFamily: pdfFont }]}>
+                  <Text style={{ fontFamily: pdfFont }}>Avoid:</Text> {rule.dontText}
                 </Text>
               </View>
             ))}
           </View>
 
-          <Text style={classicStyles.footer}>Powered by Hero</Text>
+          <Text style={[classicStyles.footer, { fontFamily: pdfFont }]}>Powered by Hero</Text>
         </Page>
       </Document>
     )
@@ -360,34 +373,34 @@ export default function PdfDocument({ companyName, brandColor, logoImageUrl, sty
 
   return (
     <Document>
-      <Page size="A4" style={modernStyles.page}>
+      <Page size="A4" style={[modernStyles.page, { fontFamily: pdfFont }]}>
         <View style={modernStyles.header}>
           <Image src={logoImageUrl} style={modernStyles.logo} />
-          <Text style={[modernStyles.mainHeadline, { color: brandColor }]}>
+          <Text style={[modernStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
             How to Film Pro-Quality Video on Your Phone
           </Text>
-          <Text style={modernStyles.subHeadline}>
+          <Text style={[modernStyles.subHeadline, { fontFamily: pdfFont }]}>
             A 5-step guide from your friends at {companyName}
           </Text>
         </View>
 
         <View style={modernStyles.rulesContainer}>
           {rules.map((rule, index) => (
-            <View key={index} style={[modernStyles.rule, { borderLeftColor: brandColor }]}>
-              <Text style={[modernStyles.ruleTitle, { color: brandColor }]}>
+            <View key={index} style={[modernStyles.rule, { borderLeftColor: primaryColor }]}>
+              <Text style={[modernStyles.ruleTitle, { color: primaryColor, fontFamily: pdfFont }]}>
                 {index + 1}. {rule.title}
               </Text>
-              <Text style={modernStyles.ruleText}>
+              <Text style={[modernStyles.ruleText, { fontFamily: pdfFont }]}>
                 <Text style={{ fontWeight: 'bold' }}>Do:</Text> {rule.doText}
               </Text>
-              <Text style={modernStyles.ruleText}>
+              <Text style={[modernStyles.ruleText, { fontFamily: pdfFont }]}>
                 <Text style={{ fontWeight: 'bold' }}>Don't:</Text> {rule.dontText}
               </Text>
             </View>
           ))}
         </View>
 
-        <Text style={modernStyles.footer}>Powered by Hero</Text>
+        <Text style={[modernStyles.footer, { fontFamily: pdfFont }]}>Powered by Hero</Text>
       </Page>
     </Document>
   )

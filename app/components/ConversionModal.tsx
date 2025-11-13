@@ -12,7 +12,7 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const { companyName, brandColor, logo, style, removeBackground } = useGenerator()
+  const { companyName, primaryColor, secondaryColor, font, logo, style, removeBackground } = useGenerator()
 
   const handleClose = () => {
     setStatus('idle')
@@ -42,7 +42,9 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
       const formData = new FormData()
       formData.append('email', email)
       formData.append('companyName', companyName || 'Your Company')
-      formData.append('brandColor', brandColor)
+      formData.append('primaryColor', primaryColor)
+      formData.append('secondaryColor', secondaryColor)
+      formData.append('font', font)
       formData.append('style', style)
       formData.append('removeBackground', removeBackground.toString())
       formData.append('logo', logo)
