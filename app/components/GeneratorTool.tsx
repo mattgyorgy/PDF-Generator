@@ -59,7 +59,7 @@ export default function GeneratorTool() {
     <div className="bg-gray-900 rounded-lg shadow-lg p-8" style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif' }}>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-white mb-3">
-          Create Your FREE Custom-Branded Filming Guide
+          Create Your Client-Ready Filming Guide
         </h1>
         <p className="text-gray-300 text-lg">
           Stop getting &quot;bad&quot; video from clients. Create a 1-page guide with your logo and brand color to send to every new client.
