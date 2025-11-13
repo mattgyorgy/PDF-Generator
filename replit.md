@@ -6,6 +6,19 @@ This is a Next.js-based lead magnet application that helps social media managers
 
 ## Recent Changes
 
+**November 13, 2025 - Font Selection and Dual-Color Customization Complete**
+- Replaced single brand color with dual-color system (primary and secondary colors)
+- Removed preset color grid; added side-by-side color pickers with HEX input
+- Added comprehensive font selection with 7 font options (Helvetica, Times New Roman, Courier, Inter, Playfair Display, Roboto, Montserrat)
+- Applied primary color to structural elements (headlines, titles, numbers, borders)
+- Applied secondary color to accent elements (icons, "Do/Don't" labels, checkmarks)
+- Implemented font mapping for web preview (browser-safe fonts) and PDF (@react-pdf/renderer bundled fonts)
+- Updated GeneratorContext to manage primaryColor, secondaryColor, and font state
+- Modified LivePreview to display selected fonts and colors across all three styles
+- Updated PdfDocument to apply selected fonts and colors to all Text elements in all three styles
+- Modified ConversionModal and API route to pass font and color parameters through PDF generation
+- All implementations reviewed and approved by architect
+
 **November 13, 2025 - Background Removal Feature Complete**
 - Added "Magic-Remove Background" checkbox that appears after logo upload
 - Integrated Remove.bg API for professional background removal
@@ -62,11 +75,11 @@ Preferred communication style: Simple, everyday language.
 - **Cons**: Mixing styling approaches requires careful management
 
 **State Management: React Context API**
-- **Problem**: Share user input (company name, logo, brand color, style, background removal) between Generator Tool and Live Preview components
+- **Problem**: Share user input (company name, logo, brand colors, font, style, background removal) between Generator Tool and Live Preview components
 - **Solution**: Custom GeneratorContext with React Context API and hooks
 - **Rationale**: Simple state sharing without external dependencies; sufficient for this application's limited state complexity
 - **Structure**: Centralized state in `GeneratorContext.tsx` with provider wrapping the main page
-- **State**: companyName, brandColor, logo, style (modern | bold | classic), removeBackground (boolean)
+- **State**: companyName, primaryColor, secondaryColor, font, logo, style (modern | bold | classic), removeBackground (boolean)
 
 **Real-time Preview System**
 - **Problem**: Users need immediate visual feedback as they customize their guide
