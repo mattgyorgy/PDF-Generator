@@ -14,6 +14,8 @@ interface GeneratorContextType {
   logoPreviewUrl: string | null
   style: StyleType
   setStyle: (style: StyleType) => void
+  removeBackground: boolean
+  setRemoveBackground: (remove: boolean) => void
 }
 
 const GeneratorContext = createContext<GeneratorContextType | undefined>(undefined)
@@ -24,6 +26,7 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
   const [logo, setLogo] = useState<File | null>(null)
   const [logoPreviewUrl, setLogoPreviewUrl] = useState<string | null>(null)
   const [style, setStyle] = useState<StyleType>('modern')
+  const [removeBackground, setRemoveBackground] = useState(false)
 
   useEffect(() => {
     if (logo) {
@@ -47,6 +50,8 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
         logoPreviewUrl,
         style,
         setStyle,
+        removeBackground,
+        setRemoveBackground,
       }}
     >
       {children}
