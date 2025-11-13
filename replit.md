@@ -2,9 +2,20 @@
 
 ## Overview
 
-This is a Next.js-based lead magnet application that helps social media managers create custom-branded PDF filming guides for their clients. Users can input their company details, upload a logo, select brand colors, and receive a professionally formatted PDF guide via email. The application features a real-time preview system and uses PDF generation with email delivery to capture leads.
+This is a Next.js-based lead magnet application that helps social media managers create custom-branded PDF filming guides for their clients. Users can input their company details, upload a logo, select brand colors and a layout style, see a real-time preview, and receive a professionally formatted PDF guide via email. The application features three distinct PDF layout styles (Modern, Bold, Classic) with instant preview updates and uses PDF generation with email delivery to capture leads.
 
 ## Recent Changes
+
+**November 13, 2025 - Style Selection Feature Complete**
+- Added "Choose Your Style" feature with three distinct PDF layout options
+- Implemented Modern style (clean, minimal, lots of white space)
+- Implemented Bold style (dark header, strong typography, high contrast with numbered badges)
+- Implemented Classic style (traditional serif fonts, formal layout, cream background)
+- Created real-time style preview switching in LivePreview component
+- Updated PdfDocument component to support all three style variations
+- Extended GeneratorContext to include style state management
+- Modified API route and ConversionModal to pass style parameter through PDF generation
+- All style implementations reviewed and approved by architect
 
 **November 13, 2025 - Initial Implementation Complete**
 - Initialized Next.js 14 project with TypeScript and Tailwind CSS
@@ -14,11 +25,10 @@ This is a Next.js-based lead magnet application that helps social media managers
 - Fixed critical bug: Resend attachment now receives base64-encoded PDF buffer
 - Added modal state reset on close for improved UX during repeated submissions
 - Dev server running successfully on port 5000
-- All code reviewed and approved by architect
 
 **Next Steps**
 - Add RESEND_API_KEY environment variable to test email functionality
-- Test PDF generation and email delivery end-to-end
+- Test all three style variations end-to-end
 - Optional: Configure allowedDevOrigins in next.config.js to suppress warnings
 
 ## User Preferences
@@ -42,16 +52,31 @@ Preferred communication style: Simple, everyday language.
 - **Cons**: Mixing styling approaches requires careful management
 
 **State Management: React Context API**
-- **Problem**: Share user input (company name, logo, brand color) between Generator Tool and Live Preview components
+- **Problem**: Share user input (company name, logo, brand color, style) between Generator Tool and Live Preview components
 - **Solution**: Custom GeneratorContext with React Context API and hooks
 - **Rationale**: Simple state sharing without external dependencies; sufficient for this application's limited state complexity
 - **Structure**: Centralized state in `GeneratorContext.tsx` with provider wrapping the main page
+- **State**: companyName, brandColor, logo, style (modern | bold | classic)
 
 **Real-time Preview System**
 - **Problem**: Users need immediate visual feedback as they customize their guide
 - **Solution**: Two-panel layout with live preview that updates on every state change
 - **Implementation**: Generator tool on left updates context; preview component on right consumes context and re-renders
 - **Rationale**: Improves user experience and increases conversion likelihood
+
+**Style Selection System**
+- **Problem**: Different clients prefer different aesthetic approaches for their branded materials
+- **Solution**: Three distinct layout styles with instant preview switching
+- **Implementation**: 
+  - GeneratorTool displays three clickable style preview cards
+  - LivePreview component has three rendering functions (renderModernStyle, renderBoldStyle, renderClassicStyle)
+  - PdfDocument component branches on style prop with separate StyleSheet definitions for each variant
+  - Style preference persists from selection through PDF generation
+- **Style Variants**:
+  - **Modern**: Clean, minimal layout with subtle borders, white background, compact spacing
+  - **Bold**: High contrast design with dark header, numbered badges, checkmarks/crosses, gray background
+  - **Classic**: Traditional formal layout with serif fonts, cream background, circled numbers, border accents
+- **Rationale**: Allows users to match their brand identity; increases perceived value of lead magnet
 
 ### Backend Architecture
 
