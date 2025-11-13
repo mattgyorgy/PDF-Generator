@@ -223,7 +223,7 @@ export default function GeneratorTool() {
                 value={primaryColor}
                 onChange={(e) => setPrimaryColor(e.target.value)}
                 placeholder="#000000"
-                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:border-transparent outline-none font-mono text-sm"
+                className="flex-1 min-w-0 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:border-transparent outline-none font-mono text-sm"
                 maxLength={7}
               />
             </div>
@@ -267,7 +267,7 @@ export default function GeneratorTool() {
                 value={secondaryColor}
                 onChange={(e) => setSecondaryColor(e.target.value)}
                 placeholder="#000000"
-                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:border-transparent outline-none font-mono text-sm"
+                className="flex-1 min-w-0 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:border-transparent outline-none font-mono text-sm"
                 maxLength={7}
               />
             </div>
