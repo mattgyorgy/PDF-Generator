@@ -56,19 +56,19 @@ export default function GeneratorTool() {
   }
 
   return (
-    <div className="bg-black rounded-lg shadow-lg p-8" style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif' }}>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-white mb-3">
+    <div className="bg-black rounded-lg shadow-lg p-6" style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif' }}>
+      <div className="mb-5">
+        <h1 className="text-2xl font-bold text-white mb-2">
           Create Your Client-Ready Filming Guide
         </h1>
-        <p className="text-gray-300 text-lg">
+        <p className="text-gray-300 text-sm">
           Stop getting &quot;bad&quot; video from clients. Create a 1-page guide with your logo and brand color to send to every new client.
         </p>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         <div>
-          <label htmlFor="company-name" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="company-name" className="block text-xs font-medium text-gray-300 mb-1.5">
             Your Company Name
           </label>
           <input
@@ -77,12 +77,12 @@ export default function GeneratorTool() {
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
             placeholder="Enter your company name"
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:border-transparent outline-none transition focus:ring-[#D4FB5D]"
+            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:border-transparent outline-none transition focus:ring-[#D4FB5D] text-sm"
           />
         </div>
 
         <div>
-          <label htmlFor="logo-upload" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="logo-upload" className="block text-xs font-medium text-gray-300 mb-1.5">
             Upload Your Logo
           </label>
           <input
@@ -90,24 +90,24 @@ export default function GeneratorTool() {
             id="logo-upload"
             accept="image/png, image/jpeg"
             onChange={handleLogoChange}
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:text-gray-900 file:bg-[#D4FB5D] hover:file:opacity-90 cursor-pointer"
+            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:text-gray-900 file:bg-[#D4FB5D] hover:file:opacity-90 cursor-pointer text-sm"
           />
           {logoPreviewUrl && (
-            <div className="mt-3 space-y-3">
+            <div className="mt-2 space-y-2">
               <img
                 src={logoPreviewUrl}
                 alt="Logo preview"
-                className="h-16 object-contain border border-gray-700 rounded p-2 bg-gray-800"
+                className="h-12 object-contain border border-gray-700 rounded p-2 bg-gray-800"
               />
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={removeBackground}
                   onChange={(e) => setRemoveBackground(e.target.checked)}
-                  className="w-4 h-4 border-gray-600 rounded focus:ring-2 accent-[#D4FB5D]"
+                  className="w-3.5 h-3.5 border-gray-600 rounded focus:ring-2 accent-[#D4FB5D]"
                 />
-                <span className="text-sm text-gray-300">
-                  ✨ Magic-Remove Background (makes your logo look clean and professional)
+                <span className="text-xs text-gray-300">
+                  ✨ Magic-Remove Background
                 </span>
               </label>
             </div>
@@ -115,66 +115,66 @@ export default function GeneratorTool() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-3">
+          <label className="block text-xs font-medium text-gray-300 mb-1.5">
             Choose Your Style
           </label>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-2">
             {styles.map((styleOption) => (
               <button
                 key={styleOption.id}
                 onClick={() => setStyle(styleOption.id)}
-                className={`p-4 border-2 rounded-lg transition-all text-left ${
+                className={`p-2.5 border-2 rounded-lg transition-all text-left ${
                   style === styleOption.id
                     ? 'bg-gray-800 ring-2 ring-[#D4FB5D]'
                     : 'border-gray-700 hover:border-gray-600 bg-gray-800/50 hover:bg-gray-800'
                 }`}
                 style={style === styleOption.id ? { borderColor: '#D4FB5D' } : {}}
               >
-                <div className="mb-2">
-                  <div className={`h-16 rounded border-2 ${
+                <div className="mb-1.5">
+                  <div className={`h-12 rounded border-2 ${
                     styleOption.id === 'modern' ? 'border-gray-600 bg-gray-700' :
                     styleOption.id === 'bold' ? 'border-gray-800 bg-black' :
                     'border-gray-600 bg-gray-700'
                   }`}>
                     {styleOption.id === 'modern' && (
-                      <div className="p-2 space-y-1">
-                        <div className="h-1 w-8 bg-gray-400 rounded"></div>
-                        <div className="h-1 w-12 bg-gray-500 rounded"></div>
-                        <div className="h-1 w-6 bg-gray-600 rounded"></div>
+                      <div className="p-1.5 space-y-0.5">
+                        <div className="h-1 w-6 bg-gray-400 rounded"></div>
+                        <div className="h-1 w-9 bg-gray-500 rounded"></div>
+                        <div className="h-1 w-5 bg-gray-600 rounded"></div>
                       </div>
                     )}
                     {styleOption.id === 'bold' && (
-                      <div className="p-2 space-y-1">
-                        <div className="h-2 w-10 bg-white rounded"></div>
-                        <div className="h-1 w-14 bg-gray-400 rounded"></div>
-                        <div className="h-1 w-8 bg-gray-500 rounded"></div>
+                      <div className="p-1.5 space-y-0.5">
+                        <div className="h-1.5 w-8 bg-white rounded"></div>
+                        <div className="h-1 w-10 bg-gray-400 rounded"></div>
+                        <div className="h-1 w-6 bg-gray-500 rounded"></div>
                       </div>
                     )}
                     {styleOption.id === 'classic' && (
-                      <div className="p-2 space-y-1">
-                        <div className="h-1 w-10 bg-gray-500 rounded-sm"></div>
-                        <div className="h-1 w-12 bg-gray-500 rounded-sm"></div>
-                        <div className="h-1 w-8 bg-gray-600 rounded-sm"></div>
+                      <div className="p-1.5 space-y-0.5">
+                        <div className="h-1 w-8 bg-gray-500 rounded-sm"></div>
+                        <div className="h-1 w-9 bg-gray-500 rounded-sm"></div>
+                        <div className="h-1 w-6 bg-gray-600 rounded-sm"></div>
                       </div>
                     )}
                   </div>
                 </div>
-                <div className="font-semibold text-sm text-white">{styleOption.name}</div>
-                <div className="text-xs text-gray-400">{styleOption.description}</div>
+                <div className="font-semibold text-xs text-white">{styleOption.name}</div>
+                <div className="text-[10px] text-gray-400">{styleOption.description}</div>
               </button>
             ))}
           </div>
         </div>
 
         <div>
-          <label htmlFor="font-select" className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="font-select" className="block text-xs font-medium text-gray-300 mb-1.5">
             Choose Your Font
           </label>
           <select
             id="font-select"
             value={font}
             onChange={(e) => setFont(e.target.value as FontType)}
-            className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:ring-2 focus:border-transparent outline-none transition cursor-pointer"
+            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:ring-2 focus:border-transparent outline-none transition cursor-pointer text-sm"
           >
             {fonts.map((fontOption) => (
               <option key={fontOption.id} value={fontOption.id}>
@@ -184,9 +184,9 @@ export default function GeneratorTool() {
           </select>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-xs font-medium text-gray-300 mb-1.5">
               Primary Color
             </label>
             <div className="flex items-center gap-2">
@@ -194,13 +194,13 @@ export default function GeneratorTool() {
                 <button
                   type="button"
                   onClick={() => setShowPrimaryPalette(!showPrimaryPalette)}
-                  className="h-12 w-12 rounded-lg border-2 border-gray-700 cursor-pointer hover:border-gray-600 transition-colors"
+                  className="h-9 w-9 rounded-lg border-2 border-gray-700 cursor-pointer hover:border-gray-600 transition-colors"
                   style={{ backgroundColor: primaryColor }}
                   aria-label="Select primary color"
                 />
                 {showPrimaryPalette && (
-                  <div className="absolute z-10 mt-2 p-3 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
-                    <div className="grid grid-cols-6 gap-2 w-56">
+                  <div className="absolute z-10 mt-2 p-2.5 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
+                    <div className="grid grid-cols-6 gap-1.5 w-48">
                       {colorPalette.map((color) => (
                         <button
                           key={color}
@@ -209,7 +209,7 @@ export default function GeneratorTool() {
                             setPrimaryColor(color)
                             setShowPrimaryPalette(false)
                           }}
-                          className="w-8 h-8 rounded border-2 border-gray-700 hover:border-gray-500 transition-colors hover:scale-110"
+                          className="w-7 h-7 rounded border-2 border-gray-700 hover:border-gray-500 transition-colors hover:scale-110"
                           style={{ backgroundColor: color }}
                           aria-label={`Select color ${color}`}
                         />
@@ -223,14 +223,14 @@ export default function GeneratorTool() {
                 value={primaryColor}
                 onChange={(e) => setPrimaryColor(e.target.value)}
                 placeholder="#000000"
-                className="flex-1 min-w-0 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-[#D4FB5D] focus:border-transparent outline-none font-mono text-sm"
+                className="flex-1 min-w-0 px-2.5 py-1.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-[#D4FB5D] focus:border-transparent outline-none font-mono text-xs"
                 maxLength={7}
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-xs font-medium text-gray-300 mb-1.5">
               Secondary Color
             </label>
             <div className="flex items-center gap-2">
@@ -238,13 +238,13 @@ export default function GeneratorTool() {
                 <button
                   type="button"
                   onClick={() => setShowSecondaryPalette(!showSecondaryPalette)}
-                  className="h-12 w-12 rounded-lg border-2 border-gray-700 cursor-pointer hover:border-gray-600 transition-colors"
+                  className="h-9 w-9 rounded-lg border-2 border-gray-700 cursor-pointer hover:border-gray-600 transition-colors"
                   style={{ backgroundColor: secondaryColor }}
                   aria-label="Select secondary color"
                 />
                 {showSecondaryPalette && (
-                  <div className="absolute z-10 mt-2 p-3 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
-                    <div className="grid grid-cols-6 gap-2 w-56">
+                  <div className="absolute z-10 mt-2 p-2.5 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
+                    <div className="grid grid-cols-6 gap-1.5 w-48">
                       {colorPalette.map((color) => (
                         <button
                           key={color}
@@ -253,7 +253,7 @@ export default function GeneratorTool() {
                             setSecondaryColor(color)
                             setShowSecondaryPalette(false)
                           }}
-                          className="w-8 h-8 rounded border-2 border-gray-700 hover:border-gray-500 transition-colors hover:scale-110"
+                          className="w-7 h-7 rounded border-2 border-gray-700 hover:border-gray-500 transition-colors hover:scale-110"
                           style={{ backgroundColor: color }}
                           aria-label={`Select color ${color}`}
                         />
@@ -267,7 +267,7 @@ export default function GeneratorTool() {
                 value={secondaryColor}
                 onChange={(e) => setSecondaryColor(e.target.value)}
                 placeholder="#000000"
-                className="flex-1 min-w-0 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-[#D4FB5D] focus:border-transparent outline-none font-mono text-sm"
+                className="flex-1 min-w-0 px-2.5 py-1.5 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-[#D4FB5D] focus:border-transparent outline-none font-mono text-xs"
                 maxLength={7}
               />
             </div>
@@ -276,7 +276,7 @@ export default function GeneratorTool() {
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="w-full font-bold py-4 px-6 rounded-lg text-lg transition-all shadow-lg hover:shadow-xl text-gray-900 hover:opacity-90"
+          className="w-full font-bold py-3 px-5 rounded-lg text-base transition-all shadow-lg hover:shadow-xl text-gray-900 hover:opacity-90"
           style={{ backgroundColor: '#D4FB5D' }}
         >
           Generate My Guide
