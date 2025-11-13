@@ -31,7 +31,7 @@ const GeneratorContext = createContext<GeneratorContextType | undefined>(undefin
 
 export function GeneratorProvider({ children }: { children: ReactNode }) {
   const [companyName, setCompanyName] = useState('')
-  const [primaryColor, setPrimaryColor] = useState('#3b82f6')
+  const [primaryColor, setPrimaryColor] = useState('#000000')
   const [secondaryColor, setSecondaryColor] = useState('#10b981')
   const [font, setFont] = useState<FontType>('helvetica')
   const [logo, setLogo] = useState<File | null>(null)
