@@ -276,12 +276,10 @@ export default function LivePreview() {
   }
 
   return (
-    <div className="rounded-lg p-4 md:p-8 flex justify-center items-start sticky top-8">
-      <div className="bg-white shadow-2xl overflow-y-auto w-full max-w-[595px]" style={{ maxHeight: '842px' }}>
-        {style === 'modern' && renderModernStyle()}
-        {style === 'bold' && renderBoldStyle()}
-        {style === 'classic' && renderClassicStyle()}
-      </div>
+    <div className="bg-white shadow-2xl rounded-lg overflow-y-auto w-full max-w-[595px]" style={{ maxHeight: '842px' }}>
+      {style === 'modern' && renderModernStyle()}
+      {style === 'bold' && renderBoldStyle()}
+      {style === 'classic' && renderClassicStyle()}
     </div>
   )
 }

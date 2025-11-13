@@ -58,7 +58,7 @@ export default function GeneratorTool() {
   }
 
   return (
-    <div className="bg-black rounded-lg shadow-lg p-6" style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif' }}>
+    <div className="bg-black rounded-lg shadow-lg p-6 w-full max-w-[595px] overflow-y-auto" style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif', maxHeight: '842px' }}>
       <div className="mb-6">
         <Image 
           src={heroLogo} 
