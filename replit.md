@@ -11,6 +11,7 @@ This is a Next.js-based lead magnet application that helps social media managers
 - Replaced font card grid with clean dropdown menu selector
 - Replaced color drag pickers with clickable color square boxes
 - Added color palette popup (36 curated colors in 6x6 grid) that opens when clicking color squares
+- Applied Plus Jakarta Sans Medium font to all form fields, headlines, and body text
 - Improved form flow and usability based on user feedback
 
 **November 13, 2025 - Font Selection and Dual-Color Customization Complete**

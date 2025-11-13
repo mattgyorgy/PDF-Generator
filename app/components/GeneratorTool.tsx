@@ -56,7 +56,7 @@ export default function GeneratorTool() {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-8">
+    <div className="bg-white rounded-lg shadow-lg p-8" style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif' }}>
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-3">
           Create Your FREE Custom-Branded Filming Guide
