@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${plusJakarta.variable}`}>{children}</body>
+      <body className={`${inter.className} ${plusJakarta.variable} bg-[#1F2937]`}>{children}</body>
     </html>
   )
 }
