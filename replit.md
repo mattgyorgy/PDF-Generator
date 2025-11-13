@@ -6,6 +6,13 @@ This is a Next.js-based lead magnet application that helps social media managers
 
 ## Recent Changes
 
+**November 13, 2025 - UI/UX Improvements to Form Layout**
+- Moved "Upload Your Logo" section to the top of the form (directly after Company Name)
+- Replaced font card grid with clean dropdown menu selector
+- Replaced color drag pickers with clickable color square boxes
+- Added color palette popup (36 curated colors in 6x6 grid) that opens when clicking color squares
+- Improved form flow and usability based on user feedback
+
 **November 13, 2025 - Font Selection and Dual-Color Customization Complete**
 - Replaced single brand color with dual-color system (primary and secondary colors)
 - Removed preset color grid; added side-by-side color pickers with HEX input
