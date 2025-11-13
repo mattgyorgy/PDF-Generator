@@ -131,10 +131,6 @@ export default function LivePreview() {
             )
           })}
         </div>
-
-        <div className="text-center mt-4 pt-4 border-t border-gray-200">
-          <p className="text-xs" style={{ color: bodyTextColor }}>Powered by Hero</p>
-        </div>
       </div>
     )
   }
@@ -157,7 +153,7 @@ export default function LivePreview() {
             </div>
           )}
           <h1 className="text-xl font-black mb-2 uppercase tracking-tight" style={{ color: secondaryColor, fontFamily }}>
-            Pro Video Tips
+            Video Filming Tips
           </h1>
           <p className="text-sm font-semibold" style={{ fontFamily, color: bodyTextColor }}>
             From {companyName || '[Your Company]'}
@@ -178,7 +174,7 @@ export default function LivePreview() {
                   </h3>
                 </div>
                 <p className="text-xs mb-1" style={{ color: bodyTextColor }}>
-                  <span className="font-semibold" style={{ color: secondaryColor }}>✓</span> {rule.doText}
+                  <span className="font-semibold text-base" style={{ color: secondaryColor }}>✓</span> {rule.doText}
                 </p>
                 {rule.varietyShots && (
                   <div className="ml-4 my-2 space-y-1">
@@ -192,16 +188,12 @@ export default function LivePreview() {
                 )}
                 {rule.dontText && (
                   <p className="text-xs" style={{ color: bodyTextColor }}>
-                    <span className="font-semibold" style={{ color: secondaryColor }}>✗</span> {rule.dontText}
+                    <span className="font-semibold text-base" style={{ color: secondaryColor }}>✗</span> {rule.dontText}
                   </p>
                 )}
               </div>
             )
           })}
-        </div>
-
-        <div className="text-center mt-4 pt-4" style={{ borderTop: `1px solid ${bodyTextColor}`, opacity: 0.5 }}>
-          <p className="text-xs font-bold" style={{ color: bodyTextColor }}>POWERED BY HERO</p>
         </div>
       </div>
     )
@@ -266,10 +258,6 @@ export default function LivePreview() {
               </div>
             )
           })}
-        </div>
-
-        <div className="text-center mt-4 pt-4 border-t border-gray-300">
-          <p className="text-xs italic" style={{ color: bodyTextColor }}>Powered by Hero</p>
         </div>
       </div>
     )

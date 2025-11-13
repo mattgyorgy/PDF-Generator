@@ -298,7 +298,7 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
           <View style={boldStyles.header}>
             <Image src={logoImageUrl} style={boldStyles.logo} />
             <Text style={[boldStyles.mainHeadline, { color: secondaryColor, fontFamily: pdfFont }]}>
-              PRO VIDEO TIPS
+              VIDEO FILMING TIPS
             </Text>
             <Text style={[boldStyles.subHeadline, { fontFamily: pdfFont, color: bodyTextColor }]}>
               From {companyName}
@@ -317,7 +317,7 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                   </Text>
                 </View>
                 <Text style={[boldStyles.ruleText, { fontFamily: pdfFont, color: bodyTextColor }]}>
-                  <Text style={{ fontWeight: 'bold', color: secondaryColor }}>✓</Text> {rule.doText}
+                  <Text style={{ fontWeight: 'bold', color: secondaryColor, fontSize: 14 }}>✓</Text> {rule.doText}
                 </Text>
                 {rule.varietyShots && (
                   <View style={{ marginLeft: 25, marginTop: 5, marginBottom: 5 }}>
@@ -333,14 +333,12 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                 )}
                 {rule.dontText && (
                   <Text style={[boldStyles.ruleText, { fontFamily: pdfFont, color: bodyTextColor }]}>
-                    <Text style={{ fontWeight: 'bold', color: secondaryColor }}>✗</Text> {rule.dontText}
+                    <Text style={{ fontWeight: 'bold', color: secondaryColor, fontSize: 14 }}>✗</Text> {rule.dontText}
                   </Text>
                 )}
               </View>
             ))}
           </View>
-
-          <Text style={[boldStyles.footer, { fontFamily: pdfFont, color: bodyTextColor, borderTopColor: bodyTextColor }]}>POWERED BY HERO</Text>
         </Page>
       </Document>
     )
@@ -396,8 +394,6 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
               </View>
             ))}
           </View>
-
-          <Text style={[classicStyles.footer, { fontFamily: pdfFont, color: classicBodyTextColor }]}>Powered by Hero</Text>
         </Page>
       </Document>
     )
@@ -447,8 +443,6 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
             </View>
           ))}
         </View>
-
-        <Text style={[modernStyles.footer, { fontFamily: pdfFont, color: modernBodyTextColor }]}>Powered by Hero</Text>
       </Page>
     </Document>
   )
