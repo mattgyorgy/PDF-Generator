@@ -1,0 +1,303 @@
+AI Developer Prompt: Build the "Client-Proof" Guide Generator
+You are an expert Next.js developer. Your task is to build a complete, production-ready lead magnet application hosted on Vercel.
+
+1. Project Goal
+Build a 1-page web application called the "Client-Proof" Filming Guide Generator.
+
+The flow is as follows:
+
+A user (a Social Media Manager) lands on the page.
+
+They immediately see a 2-panel layout: a "Generator Tool" on the left and a "Live Preview" of a PDF on the right.
+
+The user enters their company name, uploads their logo, and picks a brand color.
+
+The "Live Preview" on the right updates in real-time as they type.
+
+When the user is happy, they click "Generate My Guide."
+
+A "Conversion Modal" (popup) appears, asking for their email to download the guide they just created.
+
+After submitting their email, a backend API route is triggered.
+
+The API route generates the custom-branded PDF on the server, attaches it to an email, and sends it to the user via Resend.
+
+The modal shows a "Success" message.
+
+2. Core Tech Stack
+Framework: Next.js (App Router)
+
+Language: TypeScript
+
+Styling: Tailwind CSS
+
+PDF Generation: @react-pdf/renderer
+
+Email Service: Resend
+
+Icons: Google Material Icons (use @mui/icons-material for the easiest React integration)
+
+State Management: React useState and useContext (for sharing generator state with the preview).
+
+Hosting: Vercel
+
+3. Implementation Plan
+Step 1: Project Setup
+Initialize a new Next.js project with TypeScript and Tailwind CSS.
+
+Install the required dependencies:
+
+Bash
+
+npm install @react-pdf/renderer resend react-dom @mui/icons-material @mui/material @emotion/react @emotion/styled
+Step 2: State Management (Context)
+Create a context to hold the generator's state.
+
+app/context/GeneratorContext.tsx:
+
+Create a context GeneratorContext that provides:
+
+companyName: string
+
+setCompanyName: (name: string) => void
+
+brandColor: string
+
+setBrandColor: (color: string) => void
+
+logo: File | null
+
+setLogo: (file: File | null) => void
+
+logoPreviewUrl: string | null (Generate this using URL.createObjectURL(logo))
+
+Step 3: Main Page Layout (The 2-Panel UI)
+app/page.tsx:
+
+Wrap the page in the GeneratorContextProvider.
+
+Create a 2-panel responsive layout (stack on mobile, flex-row on desktop).
+
+Left Panel (The Tool): <GeneratorTool />
+
+Right Panel (The Preview): <LivePreview />
+
+Step 4: Left Panel (<GeneratorTool />)
+app/components/GeneratorTool.tsx:
+
+Use the useContext(GeneratorContext).
+
+Headline: "Create Your FREE Custom-Branded Filming Guide"
+
+Sub-headline: "Stop getting "bad" video from clients. Create a 1-page guide with your logo and brand color to send to every new client."
+
+Component 1: Name Input:
+
+A Tailwind-styled <input type="text"> for "Your Company Name".
+
+onChange updates setCompanyName.
+
+Component 2: Color Picker:
+
+Use 5-6 pre-set Tailwind color swatches (e.g., bg-blue-500, bg-green-500, bg-red-500) that onClick update setBrandColor.
+
+Also include an <input type="color"> for full customization.
+
+Component 3: Logo Uploader:
+
+An <input type="file" accept="image/png, image/jpeg">.
+
+onChange, set the logo and generate the logoPreviewUrl.
+
+Component 4: The CTA Button:
+
+A large button: "Generate My Guide".
+
+onClick, it will open the <ConversionModal />.
+
+Step 5: Right Panel (<LivePreview />)
+app/components/LivePreview.tsx:
+
+Use the useContext(GeneratorContext).
+
+This component simulates the PDF. It should look like a A4 document.
+
+Create a white div with a box-shadow and a 4:5.6 aspect ratio.
+
+Re-build the PDF layout (from Step 7) using simple HTML and Tailwind.
+
+The companyName text should update as the user types.
+
+The logoPreviewUrl should be used in an <img> tag.
+
+The headlines and icons should have their color set by the brandColor state.
+
+Step 6: The Modal (<ConversionModal />)
+app/components/ConversionModal.tsx:
+
+A modal that is shown/hidden by a state variable.
+
+It contains an <form> with one field: [Email Address] and a button: [Send My PDF].
+
+When the form is submitted, it does three things:
+
+Shows a "loading/generation" animation (Building your PDF..., Sending...).
+
+Uses FormData to get the email, companyName, brandColor, and logo file.
+
+POSTs this FormData to our API route: /api/generate.
+
+On a successful response, show a "Success! Check your inbox." message.
+
+On error, show an error message.
+
+Step 7: The Actual PDF Document
+app/components/PdfDocument.tsx:
+
+This is the most critical component. It uses @react-pdf/renderer.
+
+It must be rendered on the server in the API route.
+
+Do not import this component on the client-side.
+
+It will accept props: companyName, brandColor, logoImageUrl.
+
+Use the @react-pdf/renderer components: <Document>, <Page>, <View>, <Text>, <Image>, <StyleSheet>.
+
+Layout:
+
+<Page style={styles.page}>
+
+<View style={styles.header}>
+
+<Image src={logoImageUrl} style={styles.logo} />
+
+<Text style={styles.mainHeadline}>How to Film Pro-Quality Video on Your Phone</Text>
+
+<Text style={styles.subHeadline}>A 5-step guide from your friends at {companyName}</Text>
+
+</View>
+
+<View style={styles.rulesContainer}>
+
+(Rule 1) <View style={styles.rule}>
+
+{/* Use an <Image> for the icon, or render SVG as text */}
+
+<Text style={styles.ruleTitle}>1. LIGHT: Face a Window</Text>
+
+<Text style={styles.ruleText}>Do: Your best light is free. Set up your phone and *then* face the nearest window.</Text>
+
+</View>
+
+(Rules 2, 3, 4, 5) ... (Repeat for all 5 rules)
+
+</View>
+
+<Text style={styles.footer}>Powered by Hero</Text>
+
+Styling (in StyleSheet.create(...)):
+
+mainHeadline and ruleTitle should use the brandColor prop.
+
+Step 8: The Backend API Route
+app/api/generate/route.ts:
+
+This is the POST function that does all the work.
+
+1. Parse FormData: Get the email, companyName, brandColor, and logo file.
+
+2. Upload Logo: We need a public URL for the PDF's Image tag. A simple way is to upload the logo to Vercel Blob. (You will need to set this up). Get the publicUrl back.
+
+3. Generate PDF:
+
+Import ReactPDF.renderToStream from @react-pdf/renderer.
+
+Import PdfDocument from app/components/PdfDocument.tsx.
+
+const pdfStream = await ReactPDF.renderToStream(<PdfDocument companyName={companyName} brandColor={brandColor} logoImageUrl={publicUrl} />);
+
+4. Buffer the PDF: We need to convert the stream to a buffer to send with Resend.
+
+5. Send Email:
+
+Initialize Resend: const resend = new Resend(process.env.RESEND_API_KEY);
+
+await resend.emails.send({ ... });
+
+from: "Hero you@yourdomain.com"
+
+to: [email]
+
+subject: "Here's your Custom-Branded Filming Guide!"
+
+react: <YourEmailTemplate /> (A simple "Here is your guide!" email)
+
+attachments: [{ filename: 'Your_Filming_Guide.pdf', content: pdfBuffer }]
+
+6. Return Response:
+
+If successful, return NextResponse.json({ status: 'ok' }, { status: 200 }).
+
+If failed, return an error.
+
+Step 9: PDF Content (For copy-pasting)
+Use these icons from @mui/icons-material:
+
+LIGHT: <WbSunny />
+
+SOUND: <GraphicEq /> or <Mic />
+
+FRAME: <StayCurrentLandscape /> or <CropRotate />
+
+CLEAN: <CleanHands /> or <HdrWeak />
+
+SEND: <UploadFile /> or <CloudUpload />
+
+PDF Text:
+
+Headline: How to Film Pro-Quality Video on Your Phone
+
+Sub-headline: A 5-step guide from your friends at [Company Name]
+
+Rule 1:
+
+LIGHT: Face a Window
+
+Do: Your best light is free. Set up your phone and then face the nearest window.
+
+Don't: Never film with a window behind you.
+
+Rule 2:
+
+SOUND: Find a Quiet Room
+
+Do: A small room with a rug or curtains is perfect (even a closet!).
+
+Don't: Avoid big, empty rooms like kitchens or garages (they echo!).
+
+Rule 3:
+
+FRAME: Prop Your Phone Up
+
+Do: Film horizontally (turn your phone sideways!). Prop it on a stack of books and look at the camera lens, not at your own face on the screen.
+
+Don't: Never film holding the phone in your hand (it's shaky).
+
+Rule 4:
+
+CLEAN: Wipe Your Lens
+
+Do: Your phone lens is dirty. Use your t-shirt or a soft cloth to wipe the front and back camera lenses.
+
+Don't: A blurry video is usually just a smudged lens!
+
+Rule 5:
+
+SEND: Use the Special Link
+
+Do: Use the secure upload link I've provided. This sends the full, original, high-quality file.
+
+Don't: Never text or email the video. (Those services shrink and ruin your file!)
+
+Footer: Powered by Hero
