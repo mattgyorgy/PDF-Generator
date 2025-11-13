@@ -3,16 +3,7 @@
 import { useGenerator } from '@/app/context/GeneratorContext'
 import { useState } from 'react'
 import ConversionModal from './ConversionModal'
-import type { StyleType } from '@/app/context/GeneratorContext'
-
-const presetColors = [
-  { name: 'Blue', value: '#3b82f6' },
-  { name: 'Green', value: '#10b981' },
-  { name: 'Red', value: '#ef4444' },
-  { name: 'Purple', value: '#8b5cf6' },
-  { name: 'Orange', value: '#f97316' },
-  { name: 'Pink', value: '#ec4899' },
-]
+import type { StyleType, FontType } from '@/app/context/GeneratorContext'
 
 const styles = [
   {
@@ -32,8 +23,18 @@ const styles = [
   },
 ]
 
+const fonts = [
+  { id: 'helvetica' as FontType, name: 'Helvetica', preview: 'Arial, sans-serif' },
+  { id: 'times' as FontType, name: 'Times New Roman', preview: 'Georgia, serif' },
+  { id: 'courier' as FontType, name: 'Courier', preview: 'Courier New, monospace' },
+  { id: 'inter' as FontType, name: 'Inter', preview: 'Inter, sans-serif' },
+  { id: 'playfair' as FontType, name: 'Playfair Display', preview: 'Playfair Display, serif' },
+  { id: 'roboto' as FontType, name: 'Roboto', preview: 'Roboto, sans-serif' },
+  { id: 'montserrat' as FontType, name: 'Montserrat', preview: 'Montserrat, sans-serif' },
+]
+
 export default function GeneratorTool() {
-  const { companyName, setCompanyName, brandColor, setBrandColor, logo, setLogo, logoPreviewUrl, style, setStyle, removeBackground, setRemoveBackground } = useGenerator()
+  const { companyName, setCompanyName, primaryColor, setPrimaryColor, secondaryColor, setSecondaryColor, font, setFont, logo, setLogo, logoPreviewUrl, style, setStyle, removeBackground, setRemoveBackground } = useGenerator()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,41 +122,77 @@ export default function GeneratorTool() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Brand Color
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Choose Your Font
           </label>
-          <div className="grid grid-cols-6 gap-3 mb-3">
-            {presetColors.map((color) => (
+          <div className="grid grid-cols-2 gap-3">
+            {fonts.map((fontOption) => (
               <button
-                key={color.value}
-                onClick={() => setBrandColor(color.value)}
-                className={`h-12 rounded-lg transition-all ${
-                  brandColor === color.value
-                    ? 'ring-4 ring-offset-2 ring-blue-400'
-                    : 'hover:scale-105 border-2 border-gray-200'
+                key={fontOption.id}
+                onClick={() => setFont(fontOption.id)}
+                className={`p-4 border-2 rounded-lg transition-all text-left ${
+                  font === fontOption.id
+                    ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200'
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
                 }`}
-                style={{ backgroundColor: color.value }}
-                title={color.name}
-              />
+              >
+                <div className="font-semibold text-sm text-gray-900 mb-1">{fontOption.name}</div>
+                <div 
+                  className="text-lg text-gray-700"
+                  style={{ fontFamily: fontOption.preview }}
+                >
+                  The quick brown fox
+                </div>
+              </button>
             ))}
           </div>
-          <div className="flex items-center gap-2">
-            <label htmlFor="custom-color" className="text-sm text-gray-600 whitespace-nowrap">
-              Or enter HEX:
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="primary-color" className="block text-sm font-medium text-gray-700 mb-2">
+              Primary Color
             </label>
-            <input
-              type="text"
-              id="custom-color"
-              value={brandColor}
-              onChange={(e) => setBrandColor(e.target.value)}
-              placeholder="#000000"
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
-              maxLength={7}
-            />
-            <div
-              className="w-10 h-10 rounded-lg border-2 border-gray-300"
-              style={{ backgroundColor: brandColor }}
-            />
+            <div className="flex items-center gap-2">
+              <input
+                type="color"
+                id="primary-color"
+                value={primaryColor}
+                onChange={(e) => setPrimaryColor(e.target.value)}
+                className="h-12 w-16 rounded-lg cursor-pointer border-2 border-gray-300"
+              />
+              <input
+                type="text"
+                value={primaryColor}
+                onChange={(e) => setPrimaryColor(e.target.value)}
+                placeholder="#000000"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
+                maxLength={7}
+              />
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="secondary-color" className="block text-sm font-medium text-gray-700 mb-2">
+              Secondary Color
+            </label>
+            <div className="flex items-center gap-2">
+              <input
+                type="color"
+                id="secondary-color"
+                value={secondaryColor}
+                onChange={(e) => setSecondaryColor(e.target.value)}
+                className="h-12 w-16 rounded-lg cursor-pointer border-2 border-gray-300"
+              />
+              <input
+                type="text"
+                value={secondaryColor}
+                onChange={(e) => setSecondaryColor(e.target.value)}
+                placeholder="#000000"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
+                maxLength={7}
+              />
+            </div>
           </div>
         </div>
 
