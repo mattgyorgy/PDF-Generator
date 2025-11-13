@@ -56,7 +56,7 @@ export default function LivePreview() {
   const fontFamily = fontMapping[font] || 'Arial, sans-serif'
 
   const renderModernStyle = () => (
-    <div className="p-8 h-full flex flex-col" style={{ fontFamily }}>
+    <div className="p-8 flex flex-col" style={{ fontFamily }}>
       <div className="text-center mb-6">
         {logoPreviewUrl ? (
           <img
@@ -77,7 +77,7 @@ export default function LivePreview() {
         </p>
       </div>
 
-      <div className="space-y-4 flex-1">
+      <div className="space-y-4">
         {rules.map((rule, index) => {
           const Icon = rule.icon
           return (
@@ -106,7 +106,7 @@ export default function LivePreview() {
   )
 
   const renderBoldStyle = () => (
-    <div className="p-6 h-full flex flex-col bg-gray-50" style={{ fontFamily }}>
+    <div className="p-6 flex flex-col bg-gray-50" style={{ fontFamily }}>
       <div className="text-center mb-6 bg-gray-900 text-white p-4 -mx-6 -mt-6">
         {logoPreviewUrl ? (
           <img
@@ -127,7 +127,7 @@ export default function LivePreview() {
         </p>
       </div>
 
-      <div className="space-y-3 flex-1 mt-4">
+      <div className="space-y-3 mt-4">
         {rules.map((rule, index) => {
           const Icon = rule.icon
           return (
@@ -158,7 +158,7 @@ export default function LivePreview() {
   )
 
   const renderClassicStyle = () => (
-    <div className="p-10 h-full flex flex-col bg-amber-50" style={{ fontFamily }}>
+    <div className="p-10 flex flex-col bg-amber-50" style={{ fontFamily }}>
       <div className="text-center mb-8 pb-6 border-b-2 border-gray-300">
         {logoPreviewUrl ? (
           <img
@@ -179,7 +179,7 @@ export default function LivePreview() {
         </p>
       </div>
 
-      <div className="space-y-5 flex-1">
+      <div className="space-y-5">
         {rules.map((rule, index) => {
           const Icon = rule.icon
           return (
@@ -213,7 +213,7 @@ export default function LivePreview() {
 
   return (
     <div className="bg-gray-100 rounded-lg p-8 flex justify-center items-start sticky top-8">
-      <div className="bg-white shadow-2xl overflow-hidden" style={{ width: '400px', aspectRatio: '1/1.414' }}>
+      <div className="bg-white shadow-2xl overflow-y-auto" style={{ width: '400px', maxHeight: '800px' }}>
         {style === 'modern' && renderModernStyle()}
         {style === 'bold' && renderBoldStyle()}
         {style === 'classic' && renderClassicStyle()}
