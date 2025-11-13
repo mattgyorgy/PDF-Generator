@@ -138,27 +138,31 @@ export default function GeneratorTool() {
           <label htmlFor="logo-upload" className="block text-xs font-medium text-gray-300 mb-1.5">
             Upload Your Logo
           </label>
-          <input
-            type="file"
-            id="logo-upload"
-            accept="image/png, image/jpeg"
-            onChange={handleLogoChange}
-            className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:text-gray-900 file:bg-[#D4FB5D] hover:file:opacity-90 cursor-pointer text-sm"
-          />
-          {logoPreviewUrl && (
-            <div className="mt-2 space-y-2">
-              <div className="relative">
+          <div className="grid grid-cols-[1fr_auto] gap-3 items-start">
+            <input
+              type="file"
+              id="logo-upload"
+              accept="image/png, image/jpeg"
+              onChange={handleLogoChange}
+              className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-semibold file:text-gray-900 file:bg-[#D4FB5D] hover:file:opacity-90 cursor-pointer text-sm"
+            />
+            {logoPreviewUrl && (
+              <div className="relative w-16 h-10">
                 <img
                   src={processedLogoUrl || logoPreviewUrl}
                   alt="Logo preview"
-                  className="h-12 object-contain border border-gray-700 rounded p-2 bg-gray-800"
+                  className="w-full h-full object-contain border border-gray-700 rounded p-1 bg-gray-800"
                 />
                 {isProcessingLogo && (
                   <div className="absolute inset-0 flex items-center justify-center bg-gray-900/75 rounded">
-                    <div className="w-6 h-6 border-2 border-[#D4FB5D] border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-4 h-4 border-2 border-[#D4FB5D] border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 )}
               </div>
+            )}
+          </div>
+          {logoPreviewUrl && (
+            <div className="mt-3 space-y-2">
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
@@ -172,7 +176,7 @@ export default function GeneratorTool() {
                   {isProcessingLogo && <span className="ml-1">(Processing...)</span>}
                 </span>
               </label>
-              <div className="mt-2">
+              <div>
                 <label className="block text-xs font-medium text-gray-300 mb-1.5">
                   Logo Alignment
                 </label>
