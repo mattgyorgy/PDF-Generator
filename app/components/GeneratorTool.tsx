@@ -4,6 +4,8 @@ import { useGenerator } from '@/app/context/GeneratorContext'
 import { useState } from 'react'
 import ConversionModal from './ConversionModal'
 import type { StyleType, FontType } from '@/app/context/GeneratorContext'
+import Image from 'next/image'
+import heroLogo from '@/attached_assets/Hero_Logo_Primary - Color_1763064397750.png'
 
 const styles = [
   {
@@ -57,7 +59,13 @@ export default function GeneratorTool() {
 
   return (
     <div className="bg-black rounded-lg shadow-lg p-6" style={{ fontFamily: 'var(--font-plus-jakarta), sans-serif' }}>
-      <div className="mb-5">
+      <div className="mb-6">
+        <Image 
+          src={heroLogo} 
+          alt="Hero Network" 
+          className="h-8 w-auto mb-5"
+          priority
+        />
         <h1 className="text-2xl font-bold text-white mb-2">
           Create Your Client-Ready Filming Guide
         </h1>
