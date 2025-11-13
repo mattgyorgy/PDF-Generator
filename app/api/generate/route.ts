@@ -86,33 +86,104 @@ export async function POST(request: NextRequest) {
     )
 
     const emailHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h1 style="color: #333;">Here's Your Custom-Branded Filming Guide!</h1>
-        <p style="font-size: 16px; color: #666;">
-          Thanks for creating your guide! We've attached your personalized PDF below.
-        </p>
-        <p style="font-size: 16px; color: #666;">
-          Send this to your clients before every video shoot to ensure you get professional-quality footage every time.
-        </p>
-        <div style="margin-top: 30px; padding: 20px; background-color: #f5f5f5; border-radius: 8px;">
-          <p style="font-size: 14px; color: #666; margin: 0;">
-            <strong>Pro Tip:</strong> Save this PDF and share it with every new client at the start of your project.
-          </p>
-        </div>
-        <p style="font-size: 14px; color: #999; margin-top: 30px;">
-          Powered by Hero
-        </p>
-      </div>
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="margin: 0; padding: 0; background-color: #f5f5f5; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">
+        <table role="presentation" style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td align="center" style="padding: 40px 20px;">
+              
+              <!-- Main Container -->
+              <table role="presentation" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                
+                <!-- Header with Logo -->
+                <tr>
+                  <td style="background-color: #000000; padding: 40px 40px 30px; text-align: center;">
+                    <img src="https://i.postimg.cc/RhkVwCSh/hero-logo.png" alt="Hero Network" style="height: 40px; width: auto; display: block; margin: 0 auto;">
+                  </td>
+                </tr>
+                
+                <!-- Lime Green Accent Bar -->
+                <tr>
+                  <td style="background-color: #D4FB5D; height: 6px; padding: 0;"></td>
+                </tr>
+                
+                <!-- Main Content -->
+                <tr>
+                  <td style="padding: 50px 40px;">
+                    <h1 style="margin: 0 0 20px; font-size: 28px; font-weight: 700; color: #000000; line-height: 1.3;">
+                      Your Custom Filming Guide is Ready! 🎬
+                    </h1>
+                    
+                    <p style="margin: 0 0 20px; font-size: 16px; line-height: 1.6; color: #333333;">
+                      Great job creating your personalized filming guide! We've attached your professional PDF below.
+                    </p>
+                    
+                    <p style="margin: 0 0 30px; font-size: 16px; line-height: 1.6; color: #333333;">
+                      Send this to your clients before every video shoot to ensure you get high-quality footage every single time.
+                    </p>
+                    
+                    <!-- Pro Tip Box -->
+                    <table role="presentation" style="width: 100%; background-color: #f8f8f8; border-left: 4px solid #D4FB5D; border-radius: 6px; margin: 0 0 30px;">
+                      <tr>
+                        <td style="padding: 20px;">
+                          <p style="margin: 0; font-size: 15px; color: #000000;">
+                            <strong style="color: #000000;">💡 Pro Tip:</strong> Save this PDF to your cloud storage and share it with every new client at the start of your project. Consistent quality starts with clear guidelines.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                    
+                    <!-- CTA Button -->
+                    <table role="presentation" style="margin: 0 0 30px;">
+                      <tr>
+                        <td style="text-align: center;">
+                          <a href="https://heronetwork.io" style="display: inline-block; background-color: #D4FB5D; color: #000000; text-decoration: none; padding: 16px 40px; border-radius: 8px; font-size: 16px; font-weight: 700; transition: opacity 0.2s;">
+                            Learn More About Hero
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                    
+                    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #666666;">
+                      Questions or need help? Visit <a href="https://heronetwork.io" style="color: #000000; text-decoration: none; font-weight: 600;">heronetwork.io</a> to learn how we help teams create effortless video content.
+                    </p>
+                  </td>
+                </tr>
+                
+                <!-- Footer -->
+                <tr>
+                  <td style="background-color: #f8f8f8; padding: 30px 40px; text-align: center; border-top: 1px solid #e5e5e5;">
+                    <p style="margin: 0 0 8px; font-size: 13px; color: #999999;">
+                      Powered by <strong style="color: #000000;">Hero Network</strong>
+                    </p>
+                    <p style="margin: 0; font-size: 12px; color: #999999;">
+                      Effortless Video Storytelling For Teams That Move Fast
+                    </p>
+                  </td>
+                </tr>
+                
+              </table>
+              
+            </td>
+          </tr>
+        </table>
+      </body>
+      </html>
     `
 
     await resend.emails.send({
-      from: 'Hero <onboarding@resend.dev>',
+      from: 'Hero Network <onboarding@resend.dev>',
       to: [email],
-      subject: "Here's your Custom-Branded Filming Guide!",
+      subject: "Your Custom Filming Guide is Ready! 🎬",
       html: emailHtml,
       attachments: [
         {
-          filename: 'Your_Filming_Guide.pdf',
+          filename: `${companyName.replace(/[^a-z0-9]/gi, '_')}_Filming_Guide.pdf`,
           content: pdfBuffer.toString('base64'),
         },
       ],

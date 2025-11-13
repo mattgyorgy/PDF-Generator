@@ -10,6 +10,17 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 13, 2025 - Professional Email Design & Logo Alignment**
+- Redesigned email template with Hero Network branding (black #000000 and lime green #D4FB5D)
+- Professional HTML email layout with responsive tables for cross-client compatibility
+- Added Hero Network logo in email header with black background and lime green accent bar
+- Included CTA button linking to https://heronetwork.io for additional information
+- Updated email subject line to "Your Custom Filming Guide is Ready! 🎬"
+- PDF filename now includes company name for personalization
+- Added logo alignment selector (left, center, right) in GeneratorTool.tsx
+- Logo alignment applies to both live preview and PDF generation in all three styles
+- Added Name field to ConversionModal above Email Address field with validation
+
 **November 13, 2025 - Expanded Font Selection for Professional Brands**
 - Expanded font selector from 7 to 16 professional brand fonts
 - Added popular professional fonts: Arial, Georgia, Lato, Open Sans, Poppins, Raleway, Merriweather, Nunito, and Work Sans
