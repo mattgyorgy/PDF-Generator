@@ -33,9 +33,20 @@ const fonts = [
   { id: 'montserrat' as FontType, name: 'Montserrat', preview: 'Montserrat, sans-serif' },
 ]
 
+const colorPalette = [
+  '#2563EB', '#DC2626', '#059669', '#D97706', '#7C3AED', '#DB2777',
+  '#0891B2', '#EA580C', '#65A30D', '#CA8A04', '#9333EA', '#E11D48',
+  '#0E7490', '#C2410C', '#4D7C0F', '#A16207', '#7E22CE', '#BE123C',
+  '#1E40AF', '#991B1B', '#047857', '#92400E', '#6B21A8', '#9F1239',
+  '#1E3A8A', '#7F1D1D', '#065F46', '#78350F', '#581C87', '#831843',
+  '#1E293B', '#374151', '#4B5563', '#6B7280', '#9CA3AF', '#000000',
+]
+
 export default function GeneratorTool() {
   const { companyName, setCompanyName, primaryColor, setPrimaryColor, secondaryColor, setSecondaryColor, font, setFont, logo, setLogo, logoPreviewUrl, style, setStyle, removeBackground, setRemoveBackground } = useGenerator()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showPrimaryPalette, setShowPrimaryPalette] = useState(false)
+  const [showSecondaryPalette, setShowSecondaryPalette] = useState(false)
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -68,6 +79,39 @@ export default function GeneratorTool() {
             placeholder="Enter your company name"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
           />
+        </div>
+
+        <div>
+          <label htmlFor="logo-upload" className="block text-sm font-medium text-gray-700 mb-2">
+            Upload Your Logo
+          </label>
+          <input
+            type="file"
+            id="logo-upload"
+            accept="image/png, image/jpeg"
+            onChange={handleLogoChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+          />
+          {logoPreviewUrl && (
+            <div className="mt-3 space-y-3">
+              <img
+                src={logoPreviewUrl}
+                alt="Logo preview"
+                className="h-16 object-contain border border-gray-200 rounded p-2"
+              />
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={removeBackground}
+                  onChange={(e) => setRemoveBackground(e.target.checked)}
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                />
+                <span className="text-sm text-gray-700">
+                  ✨ Magic-Remove Background (makes your logo look clean and professional)
+                </span>
+              </label>
+            </div>
+          )}
         </div>
 
         <div>
@@ -122,45 +166,57 @@ export default function GeneratorTool() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+          <label htmlFor="font-select" className="block text-sm font-medium text-gray-700 mb-2">
             Choose Your Font
           </label>
-          <div className="grid grid-cols-2 gap-3">
+          <select
+            id="font-select"
+            value={font}
+            onChange={(e) => setFont(e.target.value as FontType)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white cursor-pointer"
+          >
             {fonts.map((fontOption) => (
-              <button
-                key={fontOption.id}
-                onClick={() => setFont(fontOption.id)}
-                className={`p-4 border-2 rounded-lg transition-all text-left ${
-                  font === fontOption.id
-                    ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200'
-                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                }`}
-              >
-                <div className="font-semibold text-sm text-gray-900 mb-1">{fontOption.name}</div>
-                <div 
-                  className="text-lg text-gray-700"
-                  style={{ fontFamily: fontOption.preview }}
-                >
-                  The quick brown fox
-                </div>
-              </button>
+              <option key={fontOption.id} value={fontOption.id}>
+                {fontOption.name}
+              </option>
             ))}
-          </div>
+          </select>
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label htmlFor="primary-color" className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Primary Color
             </label>
             <div className="flex items-center gap-2">
-              <input
-                type="color"
-                id="primary-color"
-                value={primaryColor}
-                onChange={(e) => setPrimaryColor(e.target.value)}
-                className="h-12 w-16 rounded-lg cursor-pointer border-2 border-gray-300"
-              />
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setShowPrimaryPalette(!showPrimaryPalette)}
+                  className="h-12 w-12 rounded-lg border-2 border-gray-300 cursor-pointer hover:border-gray-400 transition-colors"
+                  style={{ backgroundColor: primaryColor }}
+                  aria-label="Select primary color"
+                />
+                {showPrimaryPalette && (
+                  <div className="absolute z-10 mt-2 p-3 bg-white border-2 border-gray-300 rounded-lg shadow-xl">
+                    <div className="grid grid-cols-6 gap-2 w-56">
+                      {colorPalette.map((color) => (
+                        <button
+                          key={color}
+                          type="button"
+                          onClick={() => {
+                            setPrimaryColor(color)
+                            setShowPrimaryPalette(false)
+                          }}
+                          className="w-8 h-8 rounded border-2 border-gray-200 hover:border-gray-400 transition-colors hover:scale-110"
+                          style={{ backgroundColor: color }}
+                          aria-label={`Select color ${color}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
               <input
                 type="text"
                 value={primaryColor}
@@ -173,17 +229,38 @@ export default function GeneratorTool() {
           </div>
 
           <div>
-            <label htmlFor="secondary-color" className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
               Secondary Color
             </label>
             <div className="flex items-center gap-2">
-              <input
-                type="color"
-                id="secondary-color"
-                value={secondaryColor}
-                onChange={(e) => setSecondaryColor(e.target.value)}
-                className="h-12 w-16 rounded-lg cursor-pointer border-2 border-gray-300"
-              />
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setShowSecondaryPalette(!showSecondaryPalette)}
+                  className="h-12 w-12 rounded-lg border-2 border-gray-300 cursor-pointer hover:border-gray-400 transition-colors"
+                  style={{ backgroundColor: secondaryColor }}
+                  aria-label="Select secondary color"
+                />
+                {showSecondaryPalette && (
+                  <div className="absolute z-10 mt-2 p-3 bg-white border-2 border-gray-300 rounded-lg shadow-xl">
+                    <div className="grid grid-cols-6 gap-2 w-56">
+                      {colorPalette.map((color) => (
+                        <button
+                          key={color}
+                          type="button"
+                          onClick={() => {
+                            setSecondaryColor(color)
+                            setShowSecondaryPalette(false)
+                          }}
+                          className="w-8 h-8 rounded border-2 border-gray-200 hover:border-gray-400 transition-colors hover:scale-110"
+                          style={{ backgroundColor: color }}
+                          aria-label={`Select color ${color}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
               <input
                 type="text"
                 value={secondaryColor}
@@ -194,39 +271,6 @@ export default function GeneratorTool() {
               />
             </div>
           </div>
-        </div>
-
-        <div>
-          <label htmlFor="logo-upload" className="block text-sm font-medium text-gray-700 mb-2">
-            Upload Your Logo
-          </label>
-          <input
-            type="file"
-            id="logo-upload"
-            accept="image/png, image/jpeg"
-            onChange={handleLogoChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
-          />
-          {logoPreviewUrl && (
-            <div className="mt-3 space-y-3">
-              <img
-                src={logoPreviewUrl}
-                alt="Logo preview"
-                className="h-16 object-contain border border-gray-200 rounded p-2"
-              />
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={removeBackground}
-                  onChange={(e) => setRemoveBackground(e.target.checked)}
-                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
-                />
-                <span className="text-sm text-gray-700">
-                  ✨ Magic-Remove Background (makes your logo look clean and professional)
-                </span>
-              </label>
-            </div>
-          )}
         </div>
 
         <button
