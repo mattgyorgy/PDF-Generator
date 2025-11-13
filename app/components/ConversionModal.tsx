@@ -12,7 +12,7 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-  const { companyName, primaryColor, secondaryColor, font, logo, style, removeBackground } = useGenerator()
+  const { companyName, primaryColor, secondaryColor, font, logo, style, removeBackground, processedLogoUrl } = useGenerator()
 
   const handleClose = () => {
     setStatus('idle')
@@ -46,8 +46,16 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
       formData.append('secondaryColor', secondaryColor)
       formData.append('font', font)
       formData.append('style', style)
-      formData.append('removeBackground', removeBackground.toString())
-      formData.append('logo', logo)
+      
+      if (processedLogoUrl) {
+        const response = await fetch(processedLogoUrl)
+        const blob = await response.blob()
+        formData.append('logo', blob, 'logo.png')
+        formData.append('removeBackground', 'false')
+      } else {
+        formData.append('logo', logo)
+        formData.append('removeBackground', removeBackground.toString())
+      }
 
       const response = await fetch('/api/generate', {
         method: 'POST',

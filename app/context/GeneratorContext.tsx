@@ -17,10 +17,14 @@ interface GeneratorContextType {
   logo: File | null
   setLogo: (file: File | null) => void
   logoPreviewUrl: string | null
+  processedLogoUrl: string | null
+  setProcessedLogoUrl: (url: string | null) => void
   style: StyleType
   setStyle: (style: StyleType) => void
   removeBackground: boolean
   setRemoveBackground: (remove: boolean) => void
+  isProcessingLogo: boolean
+  setIsProcessingLogo: (processing: boolean) => void
 }
 
 const GeneratorContext = createContext<GeneratorContextType | undefined>(undefined)
@@ -32,16 +36,21 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
   const [font, setFont] = useState<FontType>('helvetica')
   const [logo, setLogo] = useState<File | null>(null)
   const [logoPreviewUrl, setLogoPreviewUrl] = useState<string | null>(null)
+  const [processedLogoUrl, setProcessedLogoUrl] = useState<string | null>(null)
   const [style, setStyle] = useState<StyleType>('modern')
   const [removeBackground, setRemoveBackground] = useState(false)
+  const [isProcessingLogo, setIsProcessingLogo] = useState(false)
 
   useEffect(() => {
     if (logo) {
       const url = URL.createObjectURL(logo)
       setLogoPreviewUrl(url)
+      setProcessedLogoUrl(null)
+      setRemoveBackground(false)
       return () => URL.revokeObjectURL(url)
     } else {
       setLogoPreviewUrl(null)
+      setProcessedLogoUrl(null)
     }
   }, [logo])
 
@@ -59,10 +68,14 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
         logo,
         setLogo,
         logoPreviewUrl,
+        processedLogoUrl,
+        setProcessedLogoUrl,
         style,
         setStyle,
         removeBackground,
         setRemoveBackground,
+        isProcessingLogo,
+        setIsProcessingLogo,
       }}
     >
       {children}

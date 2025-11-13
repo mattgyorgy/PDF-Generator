@@ -45,7 +45,7 @@ const colorPalette = [
 ]
 
 export default function GeneratorTool() {
-  const { companyName, setCompanyName, primaryColor, setPrimaryColor, secondaryColor, setSecondaryColor, font, setFont, logo, setLogo, logoPreviewUrl, style, setStyle, removeBackground, setRemoveBackground } = useGenerator()
+  const { companyName, setCompanyName, primaryColor, setPrimaryColor, secondaryColor, setSecondaryColor, font, setFont, logo, setLogo, logoPreviewUrl, processedLogoUrl, setProcessedLogoUrl, style, setStyle, removeBackground, setRemoveBackground, isProcessingLogo, setIsProcessingLogo } = useGenerator()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [showPrimaryPalette, setShowPrimaryPalette] = useState(false)
   const [showSecondaryPalette, setShowSecondaryPalette] = useState(false)
@@ -54,6 +54,42 @@ export default function GeneratorTool() {
     const file = e.target.files?.[0]
     if (file && (file.type === 'image/png' || file.type === 'image/jpeg')) {
       setLogo(file)
+    }
+  }
+
+  const handleBackgroundRemovalToggle = async (checked: boolean) => {
+    setRemoveBackground(checked)
+
+    if (!checked) {
+      setProcessedLogoUrl(null)
+      return
+    }
+
+    if (!logo) return
+
+    setIsProcessingLogo(true)
+
+    try {
+      const formData = new FormData()
+      formData.append('image', logo)
+
+      const response = await fetch('/api/remove-background', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to remove background')
+      }
+
+      const data = await response.json()
+      setProcessedLogoUrl(data.dataUrl)
+    } catch (error) {
+      console.error('Background removal error:', error)
+      setRemoveBackground(false)
+      alert('Failed to remove background. Please try again.')
+    } finally {
+      setIsProcessingLogo(false)
     }
   }
 
@@ -102,20 +138,29 @@ export default function GeneratorTool() {
           />
           {logoPreviewUrl && (
             <div className="mt-2 space-y-2">
-              <img
-                src={logoPreviewUrl}
-                alt="Logo preview"
-                className="h-12 object-contain border border-gray-700 rounded p-2 bg-gray-800"
-              />
+              <div className="relative">
+                <img
+                  src={processedLogoUrl || logoPreviewUrl}
+                  alt="Logo preview"
+                  className="h-12 object-contain border border-gray-700 rounded p-2 bg-gray-800"
+                />
+                {isProcessingLogo && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-900/75 rounded">
+                    <div className="w-6 h-6 border-2 border-[#D4FB5D] border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                )}
+              </div>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={removeBackground}
-                  onChange={(e) => setRemoveBackground(e.target.checked)}
-                  className="w-3.5 h-3.5 border-gray-600 rounded focus:ring-2 accent-[#D4FB5D]"
+                  onChange={(e) => handleBackgroundRemovalToggle(e.target.checked)}
+                  disabled={isProcessingLogo}
+                  className="w-3.5 h-3.5 border-gray-600 rounded focus:ring-2 accent-[#D4FB5D] disabled:opacity-50 disabled:cursor-not-allowed"
                 />
                 <span className="text-xs text-gray-300">
                   ✨ Magic-Remove Background
+                  {isProcessingLogo && <span className="ml-1">(Processing...)</span>}
                 </span>
               </label>
             </div>

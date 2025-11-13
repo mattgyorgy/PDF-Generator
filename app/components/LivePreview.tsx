@@ -57,7 +57,9 @@ const rules = [
 ]
 
 export default function LivePreview() {
-  const { companyName, primaryColor, secondaryColor, font, logoPreviewUrl, style } = useGenerator()
+  const { companyName, primaryColor, secondaryColor, font, logoPreviewUrl, processedLogoUrl, style } = useGenerator()
+  
+  const displayLogoUrl = processedLogoUrl || logoPreviewUrl
   
   const fontMapping: Record<string, string> = {
     helvetica: 'Arial, sans-serif',
@@ -77,9 +79,9 @@ export default function LivePreview() {
     return (
       <div className="p-8 flex flex-col" style={{ fontFamily }}>
         <div className="text-center mb-6">
-          {logoPreviewUrl ? (
+          {displayLogoUrl ? (
             <img
-              src={logoPreviewUrl}
+              src={displayLogoUrl}
               alt="Company logo"
               className="h-12 mx-auto mb-4 object-contain"
             />
@@ -143,9 +145,9 @@ export default function LivePreview() {
     return (
       <div className="p-8 flex flex-col" style={{ fontFamily, backgroundColor: primaryColor }}>
         <div className="text-center mb-6">
-          {logoPreviewUrl ? (
+          {displayLogoUrl ? (
             <img
-              src={logoPreviewUrl}
+              src={displayLogoUrl}
               alt="Company logo"
               className="h-12 mx-auto mb-4 object-contain"
             />
@@ -211,9 +213,9 @@ export default function LivePreview() {
     return (
       <div className="p-8 flex flex-col bg-amber-50" style={{ fontFamily }}>
         <div className="text-center mb-6 pb-4 border-b border-gray-300">
-          {logoPreviewUrl ? (
+          {displayLogoUrl ? (
             <img
-              src={logoPreviewUrl}
+              src={displayLogoUrl}
               alt="Company logo"
               className="h-12 mx-auto mb-4 object-contain opacity-90"
             />
