@@ -33,7 +33,7 @@ const styles = [
 ]
 
 export default function GeneratorTool() {
-  const { companyName, setCompanyName, brandColor, setBrandColor, logo, setLogo, logoPreviewUrl, style, setStyle } = useGenerator()
+  const { companyName, setCompanyName, brandColor, setBrandColor, logo, setLogo, logoPreviewUrl, style, setStyle, removeBackground, setRemoveBackground } = useGenerator()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -171,12 +171,23 @@ export default function GeneratorTool() {
             className="w-full px-4 py-3 border border-gray-300 rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
           />
           {logoPreviewUrl && (
-            <div className="mt-3">
+            <div className="mt-3 space-y-3">
               <img
                 src={logoPreviewUrl}
                 alt="Logo preview"
                 className="h-16 object-contain border border-gray-200 rounded p-2"
               />
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={removeBackground}
+                  onChange={(e) => setRemoveBackground(e.target.checked)}
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
+                />
+                <span className="text-sm text-gray-700">
+                  ✨ Magic-Remove Background (makes your logo look clean and professional)
+                </span>
+              </label>
             </div>
           )}
         </div>
