@@ -83,16 +83,16 @@ export default function LivePreview() {
           return (
             <div key={index} className="border-l-4 pl-3 py-1" style={{ borderColor: primaryColor }}>
               <div className="flex items-center gap-2 mb-1">
-                <Icon style={{ color: primaryColor, fontSize: '18px' }} />
+                <Icon style={{ color: secondaryColor, fontSize: '18px' }} />
                 <h3 className="font-bold text-xs" style={{ color: primaryColor }}>
                   {index + 1}. {rule.title}
                 </h3>
               </div>
               <p className="text-xs text-gray-700 mb-1">
-                <span className="font-semibold">Do:</span> {rule.doText}
+                <span className="font-semibold" style={{ color: secondaryColor }}>Do:</span> {rule.doText}
               </p>
               <p className="text-xs text-gray-700">
-                <span className="font-semibold">Don&apos;t:</span> {rule.dontText}
+                <span className="font-semibold" style={{ color: secondaryColor }}>Don&apos;t:</span> {rule.dontText}
               </p>
             </div>
           )
@@ -141,10 +141,10 @@ export default function LivePreview() {
                 </h3>
               </div>
               <p className="text-xs text-gray-800 mb-1 font-semibold">
-                ✓ {rule.doText}
+                <span style={{ color: secondaryColor }}>✓</span> {rule.doText}
               </p>
               <p className="text-xs text-gray-600">
-                ✗ {rule.dontText}
+                <span style={{ color: secondaryColor }}>✗</span> {rule.dontText}
               </p>
             </div>
           )
@@ -193,10 +193,10 @@ export default function LivePreview() {
                     {rule.title}
                   </h3>
                   <p className="text-xs text-gray-700 mb-1 leading-relaxed">
-                    <span className="font-semibold">Recommended:</span> {rule.doText}
+                    <span className="font-semibold" style={{ color: secondaryColor }}>Recommended:</span> {rule.doText}
                   </p>
                   <p className="text-xs text-gray-600 leading-relaxed">
-                    <span className="font-semibold">Avoid:</span> {rule.dontText}
+                    <span className="font-semibold" style={{ color: secondaryColor }}>Avoid:</span> {rule.dontText}
                   </p>
                 </div>
               </div>

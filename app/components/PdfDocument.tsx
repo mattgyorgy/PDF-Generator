@@ -315,10 +315,10 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                   </Text>
                 </View>
                 <Text style={[boldStyles.ruleText, { fontFamily: pdfFont }]}>
-                  <Text style={{ fontWeight: 'bold' }}>✓</Text> {rule.doText}
+                  <Text style={{ fontWeight: 'bold', color: secondaryColor }}>✓</Text> {rule.doText}
                 </Text>
                 <Text style={[boldStyles.ruleText, { color: '#666666', fontFamily: pdfFont }]}>
-                  <Text style={{ fontWeight: 'bold' }}>✗</Text> {rule.dontText}
+                  <Text style={{ fontWeight: 'bold', color: secondaryColor }}>✗</Text> {rule.dontText}
                 </Text>
               </View>
             ))}
@@ -356,10 +356,10 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                   </Text>
                 </View>
                 <Text style={[classicStyles.ruleText, { fontFamily: pdfFont }]}>
-                  <Text style={{ fontFamily: pdfFont }}>Recommended:</Text> {rule.doText}
+                  <Text style={{ fontFamily: pdfFont, color: secondaryColor }}>Recommended:</Text> {rule.doText}
                 </Text>
                 <Text style={[classicStyles.ruleText, { color: '#666666', fontFamily: pdfFont }]}>
-                  <Text style={{ fontFamily: pdfFont }}>Avoid:</Text> {rule.dontText}
+                  <Text style={{ fontFamily: pdfFont, color: secondaryColor }}>Avoid:</Text> {rule.dontText}
                 </Text>
               </View>
             ))}
@@ -391,10 +391,10 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                 {index + 1}. {rule.title}
               </Text>
               <Text style={[modernStyles.ruleText, { fontFamily: pdfFont }]}>
-                <Text style={{ fontWeight: 'bold' }}>Do:</Text> {rule.doText}
+                <Text style={{ fontWeight: 'bold', color: secondaryColor }}>Do:</Text> {rule.doText}
               </Text>
               <Text style={[modernStyles.ruleText, { fontFamily: pdfFont }]}>
-                <Text style={{ fontWeight: 'bold' }}>Don't:</Text> {rule.dontText}
+                <Text style={{ fontWeight: 'bold', color: secondaryColor }}>Don't:</Text> {rule.dontText}
               </Text>
             </View>
           ))}
