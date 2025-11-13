@@ -2,41 +2,47 @@
 
 import { useGenerator } from '@/app/context/GeneratorContext'
 import WbSunnyIcon from '@mui/icons-material/WbSunny'
-import GraphicEqIcon from '@mui/icons-material/GraphicEq'
-import StayCurrentLandscapeIcon from '@mui/icons-material/StayCurrentLandscape'
-import CleanHandsIcon from '@mui/icons-material/CleanHands'
+import VideocamIcon from '@mui/icons-material/Videocam'
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord'
+import GridViewIcon from '@mui/icons-material/GridView'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 
 const rules = [
   {
     icon: WbSunnyIcon,
-    title: 'LIGHT: Face a Window',
-    doText: 'Your best light is free. Set up your phone and then face the nearest window.',
-    dontText: 'Never film with a window behind you.',
+    title: 'LIGHT: Find the Light',
+    doText: 'Good light is your best friend. Film near windows or in brightly-lit areas.',
+    dontText: 'Don\'t film in dark, shadowy corners. If your video looks grainy, you need more light!',
   },
   {
-    icon: GraphicEqIcon,
-    title: 'SOUND: Find a Quiet Room',
-    doText: 'A small room with a rug or curtains is perfect (even a closet!).',
-    dontText: 'Avoid big, empty rooms like kitchens or garages (they echo!).',
+    icon: VideocamIcon,
+    title: 'STABILITY: Stay Steady & Move Smoothly',
+    doText: 'Film both vertical (for social media) and horizontal. Keep your phone as steady as possible—use two hands or prop it on a surface.',
+    dontText: 'Avoid shaky, random camera movements. If you move, pan slowly and smoothly in one direction.',
   },
   {
-    icon: StayCurrentLandscapeIcon,
-    title: 'FRAME: Prop Your Phone Up',
-    doText: 'Film horizontally (turn your phone sideways!). Prop it on a stack of books and look at the camera lens, not at your own face on the screen.',
-    dontText: 'Never film holding the phone in your hand (it\'s shaky).',
+    icon: FiberManualRecordIcon,
+    title: 'RECORD: Hold Each Shot for 10 Seconds',
+    doText: 'This is the most important tip! Hit record and hold your shot perfectly still for at least 10 seconds.',
+    dontText: 'Don\'t just tap "record" and "stop." We need those long, stable clips to edit with!',
   },
   {
-    icon: CleanHandsIcon,
-    title: 'CLEAN: Wipe Your Lens',
-    doText: 'Your phone lens is dirty. Use your t-shirt or a soft cloth to wipe the front and back camera lenses.',
-    dontText: 'A blurry video is usually just a smudged lens!',
+    icon: GridViewIcon,
+    title: 'VARIETY: Get 3 Angles of Everything',
+    doText: 'For every one subject, capture at least three different shots:',
+    varietyShots: [
+      { label: 'WIDE', description: 'Show the whole room or scene.' },
+      { label: 'MEDIUM', description: 'Show the subject or action.' },
+      { label: 'TIGHT', description: 'Get a close-up of the details (hands, a product, a sign).' },
+    ],
+    varietyNote: 'More angles and options are always better!',
+    dontText: '',
   },
   {
     icon: CloudUploadIcon,
     title: 'SEND: Use the Special Link',
     doText: 'Use the secure upload link I\'ve provided. This sends the full, original, high-quality file.',
-    dontText: 'Never text or email the video. (Those services shrink and ruin your file!)',
+    dontText: 'Don\'t text or email the video. (Those services shrink and ruin your file!)',
   },
 ]
 
@@ -91,9 +97,21 @@ export default function LivePreview() {
               <p className="text-xs text-gray-700 mb-1">
                 <span className="font-semibold" style={{ color: secondaryColor }}>Do:</span> {rule.doText}
               </p>
-              <p className="text-xs text-gray-700">
-                <span className="font-semibold" style={{ color: secondaryColor }}>Don&apos;t:</span> {rule.dontText}
-              </p>
+              {rule.varietyShots && (
+                <div className="ml-4 my-2 space-y-1">
+                  {rule.varietyShots.map((shot: any, idx: number) => (
+                    <p key={idx} className="text-xs text-gray-700">
+                      <span className="font-semibold" style={{ color: secondaryColor }}>{idx + 1}. {shot.label}:</span> {shot.description}
+                    </p>
+                  ))}
+                  <p className="text-xs text-gray-700 italic mt-1">{rule.varietyNote}</p>
+                </div>
+              )}
+              {rule.dontText && (
+                <p className="text-xs text-gray-700">
+                  <span className="font-semibold" style={{ color: secondaryColor }}>Don&apos;t:</span> {rule.dontText}
+                </p>
+              )}
             </div>
           )
         })}
@@ -143,9 +161,21 @@ export default function LivePreview() {
               <p className="text-xs text-gray-800 mb-1 font-semibold">
                 <span style={{ color: secondaryColor }}>✓</span> {rule.doText}
               </p>
-              <p className="text-xs text-gray-600">
-                <span style={{ color: secondaryColor }}>✗</span> {rule.dontText}
-              </p>
+              {rule.varietyShots && (
+                <div className="ml-6 my-2 space-y-1">
+                  {rule.varietyShots.map((shot: any, idx: number) => (
+                    <p key={idx} className="text-xs text-gray-700">
+                      <span className="font-bold" style={{ color: secondaryColor }}>{idx + 1}. {shot.label}:</span> {shot.description}
+                    </p>
+                  ))}
+                  <p className="text-xs text-gray-700 italic mt-1">{rule.varietyNote}</p>
+                </div>
+              )}
+              {rule.dontText && (
+                <p className="text-xs text-gray-600">
+                  <span style={{ color: secondaryColor }}>✗</span> {rule.dontText}
+                </p>
+              )}
             </div>
           )
         })}
@@ -195,9 +225,21 @@ export default function LivePreview() {
                   <p className="text-xs text-gray-700 mb-1 leading-relaxed">
                     <span className="font-semibold" style={{ color: secondaryColor }}>Recommended:</span> {rule.doText}
                   </p>
-                  <p className="text-xs text-gray-600 leading-relaxed">
-                    <span className="font-semibold" style={{ color: secondaryColor }}>Avoid:</span> {rule.dontText}
-                  </p>
+                  {rule.varietyShots && (
+                    <div className="ml-4 my-2 space-y-1">
+                      {rule.varietyShots.map((shot: any, idx: number) => (
+                        <p key={idx} className="text-xs text-gray-700 leading-relaxed">
+                          <span className="font-semibold" style={{ color: secondaryColor }}>{idx + 1}. {shot.label}:</span> {shot.description}
+                        </p>
+                      ))}
+                      <p className="text-xs text-gray-700 italic mt-1 leading-relaxed">{rule.varietyNote}</p>
+                    </div>
+                  )}
+                  {rule.dontText && (
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      <span className="font-semibold" style={{ color: secondaryColor }}>Avoid:</span> {rule.dontText}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

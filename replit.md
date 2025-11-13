@@ -6,6 +6,15 @@ This is a Next.js-based lead magnet application that helps social media managers
 
 ## Recent Changes
 
+**November 13, 2025 - Content Update: New 5-Step Filming Guide**
+- Updated filming guide content from LIGHT/SOUND/FRAME/CLEAN/SEND to LIGHT/STABILITY/RECORD/VARIETY/SEND
+- Revised all Do/Don't text to match new filming methodology focused on stability, recording duration, and shot variety
+- Added special nested structure for VARIETY section with three shot types (WIDE, MEDIUM, TIGHT) plus additional note
+- Updated Material-UI icons to match new topics (VideocamIcon for stability, FiberManualRecordIcon for recording, GridViewIcon for variety)
+- Implemented conditional rendering for varietyShots array and optional dontText across all 6 style renderers (3 preview, 3 PDF)
+- Maintained content consistency between LivePreview.tsx and PdfDocument.tsx
+- All implementations reviewed and approved by architect
+
 **November 13, 2025 - UI/UX Improvements to Form Layout**
 - Moved "Upload Your Logo" section to the top of the form (directly after Company Name)
 - Replaced font card grid with clean dropdown menu selector
