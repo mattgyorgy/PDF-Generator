@@ -36,12 +36,16 @@ const fonts = [
 ]
 
 const colorPalette = [
-  '#2563EB', '#DC2626', '#059669', '#D97706', '#7C3AED', '#DB2777',
-  '#0891B2', '#EA580C', '#65A30D', '#CA8A04', '#9333EA', '#E11D48',
-  '#0E7490', '#C2410C', '#4D7C0F', '#A16207', '#7E22CE', '#BE123C',
-  '#1E40AF', '#991B1B', '#047857', '#92400E', '#6B21A8', '#9F1239',
-  '#1E3A8A', '#7F1D1D', '#065F46', '#78350F', '#581C87', '#831843',
-  '#1E293B', '#374151', '#4B5563', '#6B7280', '#9CA3AF', '#000000',
+  '#FFFFFF', '#F5F5F5', '#E5E5E5', '#D4D4D4', '#A3A3A3', '#737373',
+  '#525252', '#404040', '#262626', '#171717', '#0A0A0A', '#000000',
+  '#FEF3C7', '#FDE68A', '#FCD34D', '#FBBF24', '#F59E0B', '#D97706',
+  '#B45309', '#92400E', '#78350F', '#451A03', '#FEE2E2', '#FECACA',
+  '#FCA5A5', '#F87171', '#EF4444', '#DC2626', '#B91C1C', '#991B1B',
+  '#7F1D1D', '#450A0A', '#DBEAFE', '#BFDBFE', '#93C5FD', '#60A5FA',
+  '#3B82F6', '#2563EB', '#1D4ED8', '#1E40AF', '#1E3A8A', '#172554',
+  '#D1FAE5', '#A7F3D0', '#6EE7B7', '#34D399', '#10B981', '#059669',
+  '#047857', '#065F46', '#064E3B', '#022C22', '#E9D5FF', '#D8B4FE',
+  '#C084FC', '#A855F7', '#9333EA', '#7C3AED', '#6B21A8', '#581C87',
 ]
 
 export default function GeneratorTool() {
@@ -252,7 +256,7 @@ export default function GeneratorTool() {
                   aria-label="Select primary color"
                 />
                 {showPrimaryPalette && (
-                  <div className="absolute z-10 mt-2 p-2.5 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
+                  <div className="absolute z-10 bottom-full mb-2 p-2.5 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
                     <div className="grid grid-cols-6 gap-1.5 w-48">
                       {colorPalette.map((color) => (
                         <button
@@ -262,7 +266,7 @@ export default function GeneratorTool() {
                             setPrimaryColor(color)
                             setShowPrimaryPalette(false)
                           }}
-                          className="w-7 h-7 rounded border-2 border-gray-700 hover:border-gray-500 transition-colors hover:scale-110"
+                          className="w-7 h-7 rounded border border-gray-600 hover:border-gray-400 transition-colors hover:scale-110"
                           style={{ backgroundColor: color }}
                           aria-label={`Select color ${color}`}
                         />
@@ -296,7 +300,7 @@ export default function GeneratorTool() {
                   aria-label="Select secondary color"
                 />
                 {showSecondaryPalette && (
-                  <div className="absolute z-10 mt-2 p-2.5 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
+                  <div className="absolute z-10 bottom-full mb-2 p-2.5 bg-gray-800 border-2 border-gray-700 rounded-lg shadow-xl">
                     <div className="grid grid-cols-6 gap-1.5 w-48">
                       {colorPalette.map((color) => (
                         <button
@@ -306,7 +310,7 @@ export default function GeneratorTool() {
                             setSecondaryColor(color)
                             setShowSecondaryPalette(false)
                           }}
-                          className="w-7 h-7 rounded border-2 border-gray-700 hover:border-gray-500 transition-colors hover:scale-110"
+                          className="w-7 h-7 rounded border border-gray-600 hover:border-gray-400 transition-colors hover:scale-110"
                           style={{ backgroundColor: color }}
                           aria-label={`Select color ${color}`}
                         />
