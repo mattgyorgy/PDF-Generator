@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
     const email = formData.get('email') as string
     const companyName = formData.get('companyName') as string
     const brandColor = formData.get('brandColor') as string
+    const style = (formData.get('style') as string) || 'modern'
     const logo = formData.get('logo') as File
 
     if (!email || !companyName || !brandColor || !logo) {
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
         companyName,
         brandColor,
         logoImageUrl: logoDataUrl,
+        style: style as 'modern' | 'bold' | 'classic',
       }) as any
     )
 

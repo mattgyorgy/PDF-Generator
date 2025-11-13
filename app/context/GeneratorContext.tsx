@@ -2,6 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
+export type StyleType = 'modern' | 'bold' | 'classic'
+
 interface GeneratorContextType {
   companyName: string
   setCompanyName: (name: string) => void
@@ -10,6 +12,8 @@ interface GeneratorContextType {
   logo: File | null
   setLogo: (file: File | null) => void
   logoPreviewUrl: string | null
+  style: StyleType
+  setStyle: (style: StyleType) => void
 }
 
 const GeneratorContext = createContext<GeneratorContextType | undefined>(undefined)
@@ -19,6 +23,7 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
   const [brandColor, setBrandColor] = useState('#3b82f6')
   const [logo, setLogo] = useState<File | null>(null)
   const [logoPreviewUrl, setLogoPreviewUrl] = useState<string | null>(null)
+  const [style, setStyle] = useState<StyleType>('modern')
 
   useEffect(() => {
     if (logo) {
@@ -40,6 +45,8 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
         logo,
         setLogo,
         logoPreviewUrl,
+        style,
+        setStyle,
       }}
     >
       {children}

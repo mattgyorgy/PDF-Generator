@@ -3,6 +3,7 @@
 import { useGenerator } from '@/app/context/GeneratorContext'
 import { useState } from 'react'
 import ConversionModal from './ConversionModal'
+import type { StyleType } from '@/app/context/GeneratorContext'
 
 const presetColors = [
   { name: 'Blue', value: '#3b82f6' },
@@ -13,8 +14,26 @@ const presetColors = [
   { name: 'Pink', value: '#ec4899' },
 ]
 
+const styles = [
+  {
+    id: 'modern' as StyleType,
+    name: 'Modern',
+    description: 'Clean and minimal',
+  },
+  {
+    id: 'bold' as StyleType,
+    name: 'Bold',
+    description: 'Strong and impactful',
+  },
+  {
+    id: 'classic' as StyleType,
+    name: 'Classic',
+    description: 'Traditional and elegant',
+  },
+]
+
 export default function GeneratorTool() {
-  const { companyName, setCompanyName, brandColor, setBrandColor, logo, setLogo, logoPreviewUrl } = useGenerator()
+  const { companyName, setCompanyName, brandColor, setBrandColor, logo, setLogo, logoPreviewUrl, style, setStyle } = useGenerator()
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +67,57 @@ export default function GeneratorTool() {
             placeholder="Enter your company name"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-3">
+            Choose Your Style
+          </label>
+          <div className="grid grid-cols-3 gap-3">
+            {styles.map((styleOption) => (
+              <button
+                key={styleOption.id}
+                onClick={() => setStyle(styleOption.id)}
+                className={`p-4 border-2 rounded-lg transition-all text-left ${
+                  style === styleOption.id
+                    ? 'border-blue-500 bg-blue-50 ring-2 ring-blue-200'
+                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                <div className="mb-2">
+                  <div className={`h-16 rounded border-2 ${
+                    styleOption.id === 'modern' ? 'border-gray-300 bg-white' :
+                    styleOption.id === 'bold' ? 'border-gray-800 bg-gray-900' :
+                    'border-gray-400 bg-gray-100'
+                  }`}>
+                    {styleOption.id === 'modern' && (
+                      <div className="p-2 space-y-1">
+                        <div className="h-1 w-8 bg-gray-400 rounded"></div>
+                        <div className="h-1 w-12 bg-gray-300 rounded"></div>
+                        <div className="h-1 w-6 bg-gray-200 rounded"></div>
+                      </div>
+                    )}
+                    {styleOption.id === 'bold' && (
+                      <div className="p-2 space-y-1">
+                        <div className="h-2 w-10 bg-white rounded"></div>
+                        <div className="h-1 w-14 bg-gray-400 rounded"></div>
+                        <div className="h-1 w-8 bg-gray-500 rounded"></div>
+                      </div>
+                    )}
+                    {styleOption.id === 'classic' && (
+                      <div className="p-2 space-y-1">
+                        <div className="h-1 w-10 bg-gray-600 rounded-sm"></div>
+                        <div className="h-1 w-12 bg-gray-500 rounded-sm"></div>
+                        <div className="h-1 w-8 bg-gray-400 rounded-sm"></div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="font-semibold text-sm text-gray-900">{styleOption.name}</div>
+                <div className="text-xs text-gray-500">{styleOption.description}</div>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div>
