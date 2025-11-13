@@ -6,6 +6,39 @@ import React from 'react'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
+async function removeImageBackground(imageBuffer: ArrayBuffer): Promise<ArrayBuffer> {
+  const apiKey = process.env.REMOVE_BG_API_KEY
+  
+  if (!apiKey) {
+    console.warn('REMOVE_BG_API_KEY not found, skipping background removal')
+    return imageBuffer
+  }
+
+  try {
+    const formData = new FormData()
+    formData.append('image_file', new Blob([imageBuffer]))
+    formData.append('size', 'auto')
+
+    const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+      method: 'POST',
+      headers: {
+        'X-Api-Key': apiKey,
+      },
+      body: formData,
+    })
+
+    if (!response.ok) {
+      console.error('Remove.bg API error:', await response.text())
+      return imageBuffer
+    }
+
+    return await response.arrayBuffer()
+  } catch (error) {
+    console.error('Background removal failed:', error)
+    return imageBuffer
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
@@ -13,6 +46,7 @@ export async function POST(request: NextRequest) {
     const companyName = formData.get('companyName') as string
     const brandColor = formData.get('brandColor') as string
     const style = (formData.get('style') as string) || 'modern'
+    const removeBackground = formData.get('removeBackground') === 'true'
     const logo = formData.get('logo') as File
 
     if (!email || !companyName || !brandColor || !logo) {
@@ -22,9 +56,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const logoBuffer = await logo.arrayBuffer()
+    let logoBuffer = await logo.arrayBuffer()
+    let logoMimeType = logo.type
+
+    if (removeBackground) {
+      const processedBuffer = await removeImageBackground(logoBuffer)
+      if (processedBuffer !== logoBuffer) {
+        logoBuffer = processedBuffer
+        logoMimeType = 'image/png'
+      }
+    }
+
     const logoBase64 = Buffer.from(logoBuffer).toString('base64')
-    const logoDataUrl = `data:${logo.type};base64,${logoBase64}`
+    const logoDataUrl = `data:${logoMimeType};base64,${logoBase64}`
 
     const pdfBuffer = await renderToBuffer(
       React.createElement(PdfDocument, {
