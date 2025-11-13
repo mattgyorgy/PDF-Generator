@@ -47,6 +47,7 @@ export async function POST(request: NextRequest) {
     const primaryColor = formData.get('primaryColor') as string
     const secondaryColor = formData.get('secondaryColor') as string
     const font = formData.get('font') as string
+    const logoAlign = (formData.get('logoAlign') as string) || 'center'
     const style = (formData.get('style') as string) || 'modern'
     const removeBackground = formData.get('removeBackground') === 'true'
     const logo = formData.get('logo') as File
@@ -79,6 +80,7 @@ export async function POST(request: NextRequest) {
         secondaryColor,
         font,
         logoImageUrl: logoDataUrl,
+        logoAlign: logoAlign as 'left' | 'center' | 'right',
         style: style as 'modern' | 'bold' | 'classic',
       }) as any
     )

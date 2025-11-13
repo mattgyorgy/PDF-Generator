@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 
 export type StyleType = 'modern' | 'bold' | 'classic'
 export type FontType = 'helvetica' | 'arial' | 'georgia' | 'times' | 'courier' | 'inter' | 'lato' | 'opensans' | 'poppins' | 'raleway' | 'playfair' | 'merriweather' | 'roboto' | 'montserrat' | 'nunito' | 'worksans'
+export type LogoAlignType = 'left' | 'center' | 'right'
 
 interface GeneratorContextType {
   companyName: string
@@ -19,6 +20,8 @@ interface GeneratorContextType {
   logoPreviewUrl: string | null
   processedLogoUrl: string | null
   setProcessedLogoUrl: (url: string | null) => void
+  logoAlign: LogoAlignType
+  setLogoAlign: (align: LogoAlignType) => void
   style: StyleType
   setStyle: (style: StyleType) => void
   removeBackground: boolean
@@ -37,6 +40,7 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
   const [logo, setLogo] = useState<File | null>(null)
   const [logoPreviewUrl, setLogoPreviewUrl] = useState<string | null>(null)
   const [processedLogoUrl, setProcessedLogoUrl] = useState<string | null>(null)
+  const [logoAlign, setLogoAlign] = useState<LogoAlignType>('center')
   const [style, setStyle] = useState<StyleType>('modern')
   const [removeBackground, setRemoveBackground] = useState(false)
   const [isProcessingLogo, setIsProcessingLogo] = useState(false)
@@ -70,6 +74,8 @@ export function GeneratorProvider({ children }: { children: ReactNode }) {
         logoPreviewUrl,
         processedLogoUrl,
         setProcessedLogoUrl,
+        logoAlign,
+        setLogoAlign,
         style,
         setStyle,
         removeBackground,

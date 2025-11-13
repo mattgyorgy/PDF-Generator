@@ -57,9 +57,17 @@ const rules = [
 ]
 
 export default function LivePreview() {
-  const { companyName, primaryColor, secondaryColor, font, logoPreviewUrl, processedLogoUrl, style } = useGenerator()
+  const { companyName, primaryColor, secondaryColor, font, logoPreviewUrl, processedLogoUrl, logoAlign, style } = useGenerator()
   
   const displayLogoUrl = processedLogoUrl || logoPreviewUrl
+  
+  const getLogoAlignmentClass = () => {
+    if (logoAlign === 'left') return 'mr-auto'
+    if (logoAlign === 'right') return 'ml-auto'
+    return 'mx-auto'
+  }
+  
+  const logoAlignClass = getLogoAlignmentClass()
   
   const fontMapping: Record<string, string> = {
     helvetica: 'Arial, sans-serif',
@@ -92,7 +100,7 @@ export default function LivePreview() {
             <img
               src={displayLogoUrl}
               alt="Company logo"
-              className="h-12 mx-auto mb-4 object-contain"
+              className={`h-12 ${logoAlignClass} mb-4 object-contain`}
             />
           ) : (
             <div className="h-12 mb-4 flex items-center justify-center text-gray-400 text-sm">
@@ -154,7 +162,7 @@ export default function LivePreview() {
             <img
               src={displayLogoUrl}
               alt="Company logo"
-              className="h-12 mx-auto mb-4 object-contain"
+              className={`h-12 ${logoAlignClass} mb-4 object-contain`}
             />
           ) : (
             <div className="h-12 mb-4 flex items-center justify-center text-sm" style={{ color: bodyTextColor, opacity: 0.5 }}>
@@ -218,7 +226,7 @@ export default function LivePreview() {
             <img
               src={displayLogoUrl}
               alt="Company logo"
-              className="h-12 mx-auto mb-4 object-contain opacity-90"
+              className={`h-12 ${logoAlignClass} mb-4 object-contain opacity-90`}
             />
           ) : (
             <div className="h-12 mb-4 flex items-center justify-center text-gray-400 text-sm">

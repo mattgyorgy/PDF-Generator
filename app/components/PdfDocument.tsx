@@ -2,6 +2,7 @@ import React from 'react'
 import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/renderer'
 
 type StyleType = 'modern' | 'bold' | 'classic'
+type LogoAlignType = 'left' | 'center' | 'right'
 
 // Helper function to determine if a color is light or dark
 const isLightColor = (hexColor: string): boolean => {
@@ -240,6 +241,7 @@ interface PdfDocumentProps {
   secondaryColor: string
   font: string
   logoImageUrl: string
+  logoAlign: LogoAlignType
   style?: StyleType
 }
 
@@ -277,7 +279,7 @@ const rules = [
   },
 ]
 
-export default function PdfDocument({ companyName, primaryColor, secondaryColor, font, logoImageUrl, style = 'modern' }: PdfDocumentProps) {
+export default function PdfDocument({ companyName, primaryColor, secondaryColor, font, logoImageUrl, logoAlign, style = 'modern' }: PdfDocumentProps) {
   const fontMapping: Record<string, string> = {
     helvetica: 'Helvetica',
     arial: 'Helvetica',
@@ -300,12 +302,20 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
   const pdfFont = fontMapping[font] || 'Helvetica'
   const bodyTextColor = isLightColor(primaryColor) ? '#000000' : '#ffffff'
   
+  const getLogoAlignment = () => {
+    if (logoAlign === 'left') return { marginLeft: 0, marginRight: 'auto' }
+    if (logoAlign === 'right') return { marginLeft: 'auto', marginRight: 0 }
+    return { marginLeft: 'auto', marginRight: 'auto' }
+  }
+
+  const logoAlignmentStyle = getLogoAlignment()
+  
   if (style === 'bold') {
     return (
       <Document>
         <Page size="A4" style={[boldStyles.page, { fontFamily: pdfFont, backgroundColor: primaryColor }]}>
           <View style={boldStyles.header}>
-            <Image src={logoImageUrl} style={boldStyles.logo} />
+            <Image src={logoImageUrl} style={[boldStyles.logo, logoAlignmentStyle]} />
             <Text style={[boldStyles.mainHeadline, { color: secondaryColor, fontFamily: pdfFont }]}>
               VIDEO FILMING TIPS
             </Text>
@@ -360,7 +370,7 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
       <Document>
         <Page size="A4" style={[classicStyles.page, { fontFamily: pdfFont }]}>
           <View style={classicStyles.header}>
-            <Image src={logoImageUrl} style={classicStyles.logo} />
+            <Image src={logoImageUrl} style={[classicStyles.logo, logoAlignmentStyle]} />
             <Text style={[classicStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
               Professional Video Guidelines
             </Text>
@@ -414,7 +424,7 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
     <Document>
       <Page size="A4" style={[modernStyles.page, { fontFamily: pdfFont }]}>
         <View style={modernStyles.header}>
-          <Image src={logoImageUrl} style={modernStyles.logo} />
+          <Image src={logoImageUrl} style={[modernStyles.logo, logoAlignmentStyle]} />
           <Text style={[modernStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
             How to Film Pro-Quality Video on Your Phone
           </Text>

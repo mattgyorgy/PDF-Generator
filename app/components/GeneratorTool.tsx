@@ -54,7 +54,7 @@ const colorPalette = [
 ]
 
 export default function GeneratorTool() {
-  const { companyName, setCompanyName, primaryColor, setPrimaryColor, secondaryColor, setSecondaryColor, font, setFont, logo, setLogo, logoPreviewUrl, processedLogoUrl, setProcessedLogoUrl, style, setStyle, removeBackground, setRemoveBackground, isProcessingLogo, setIsProcessingLogo } = useGenerator()
+  const { companyName, setCompanyName, primaryColor, setPrimaryColor, secondaryColor, setSecondaryColor, font, setFont, logo, setLogo, logoPreviewUrl, processedLogoUrl, setProcessedLogoUrl, logoAlign, setLogoAlign, style, setStyle, removeBackground, setRemoveBackground, isProcessingLogo, setIsProcessingLogo } = useGenerator()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [showPrimaryPalette, setShowPrimaryPalette] = useState(false)
   const [showSecondaryPalette, setShowSecondaryPalette] = useState(false)
@@ -172,6 +172,46 @@ export default function GeneratorTool() {
                   {isProcessingLogo && <span className="ml-1">(Processing...)</span>}
                 </span>
               </label>
+              <div className="mt-2">
+                <label className="block text-xs font-medium text-gray-300 mb-1.5">
+                  Logo Alignment
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setLogoAlign('left')}
+                    className={`px-3 py-2 text-xs font-medium rounded-lg border transition-all ${
+                      logoAlign === 'left'
+                        ? 'bg-[#D4FB5D] text-gray-900 border-[#D4FB5D]'
+                        : 'bg-gray-800 text-gray-300 border-gray-700 hover:border-gray-600'
+                    }`}
+                  >
+                    Left
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLogoAlign('center')}
+                    className={`px-3 py-2 text-xs font-medium rounded-lg border transition-all ${
+                      logoAlign === 'center'
+                        ? 'bg-[#D4FB5D] text-gray-900 border-[#D4FB5D]'
+                        : 'bg-gray-800 text-gray-300 border-gray-700 hover:border-gray-600'
+                    }`}
+                  >
+                    Center
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setLogoAlign('right')}
+                    className={`px-3 py-2 text-xs font-medium rounded-lg border transition-all ${
+                      logoAlign === 'right'
+                        ? 'bg-[#D4FB5D] text-gray-900 border-[#D4FB5D]'
+                        : 'bg-gray-800 text-gray-300 border-gray-700 hover:border-gray-600'
+                    }`}
+                  >
+                    Right
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>
