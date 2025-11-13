@@ -3,6 +3,16 @@ import { Document, Page, Text, View, Image, StyleSheet } from '@react-pdf/render
 
 type StyleType = 'modern' | 'bold' | 'classic'
 
+// Helper function to determine if a color is light or dark
+const isLightColor = (hexColor: string): boolean => {
+  const hex = hexColor.replace('#', '')
+  const r = parseInt(hex.substr(0, 2), 16)
+  const g = parseInt(hex.substr(2, 2), 16)
+  const b = parseInt(hex.substr(4, 2), 16)
+  const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
+  return luminance > 0.5
+}
+
 const modernStyles = StyleSheet.create({
   page: {
     padding: 40,
@@ -64,16 +74,10 @@ const modernStyles = StyleSheet.create({
 const boldStyles = StyleSheet.create({
   page: {
     padding: 30,
-    backgroundColor: '#f5f5f5',
     fontFamily: 'Helvetica-Bold',
   },
   header: {
     marginBottom: 25,
-    backgroundColor: '#1a1a1a',
-    padding: 20,
-    marginLeft: -30,
-    marginRight: -30,
-    marginTop: -30,
     textAlign: 'center',
   },
   logo: {
@@ -88,13 +92,11 @@ const boldStyles = StyleSheet.create({
     fontSize: 26,
     fontWeight: 'heavy',
     marginBottom: 8,
-    color: '#ffffff',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   subHeadline: {
     fontSize: 11,
-    color: '#ffffff',
     fontWeight: 'bold',
   },
   rulesContainer: {
@@ -103,10 +105,6 @@ const boldStyles = StyleSheet.create({
   rule: {
     marginBottom: 15,
     padding: 15,
-    backgroundColor: '#ffffff',
-    borderLeftWidth: 4,
-    borderLeftStyle: 'solid',
-    borderRadius: 4,
   },
   ruleHeader: {
     flexDirection: 'row',
@@ -120,7 +118,6 @@ const boldStyles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 11,
     fontWeight: 'heavy',
-    color: '#ffffff',
     paddingTop: 5,
   },
   ruleTitle: {
@@ -133,7 +130,6 @@ const boldStyles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 1.5,
     marginBottom: 4,
-    color: '#1a1a1a',
   },
   footer: {
     position: 'absolute',
@@ -143,9 +139,7 @@ const boldStyles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 10,
     fontWeight: 'heavy',
-    color: '#1a1a1a',
     borderTopWidth: 2,
-    borderTopColor: '#1a1a1a',
     borderTopStyle: 'solid',
     paddingTop: 10,
   },
@@ -295,48 +289,50 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
   }
   
   const pdfFont = fontMapping[font] || 'Helvetica'
+  const bodyTextColor = isLightColor(primaryColor) ? '#000000' : '#ffffff'
+  
   if (style === 'bold') {
     return (
       <Document>
-        <Page size="A4" style={[boldStyles.page, { fontFamily: pdfFont }]}>
+        <Page size="A4" style={[boldStyles.page, { fontFamily: pdfFont, backgroundColor: primaryColor }]}>
           <View style={boldStyles.header}>
             <Image src={logoImageUrl} style={boldStyles.logo} />
-            <Text style={[boldStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
+            <Text style={[boldStyles.mainHeadline, { color: secondaryColor, fontFamily: pdfFont }]}>
               PRO VIDEO TIPS
             </Text>
-            <Text style={[boldStyles.subHeadline, { fontFamily: pdfFont }]}>
+            <Text style={[boldStyles.subHeadline, { fontFamily: pdfFont, color: bodyTextColor }]}>
               From {companyName}
             </Text>
           </View>
 
           <View style={boldStyles.rulesContainer}>
             {rules.map((rule, index) => (
-              <View key={index} style={[boldStyles.rule, { borderLeftColor: primaryColor }]}>
+              <View key={index} style={boldStyles.rule}>
                 <View style={boldStyles.ruleHeader}>
-                  <Text style={[boldStyles.ruleNumber, { backgroundColor: primaryColor, fontFamily: pdfFont }]}>
+                  <Text style={[boldStyles.ruleNumber, { backgroundColor: secondaryColor, color: isLightColor(secondaryColor) ? '#000000' : '#ffffff', fontFamily: pdfFont }]}>
                     {index + 1}
                   </Text>
-                  <Text style={[boldStyles.ruleTitle, { color: primaryColor, fontFamily: pdfFont }]}>
+                  <Text style={[boldStyles.ruleTitle, { color: secondaryColor, fontFamily: pdfFont }]}>
                     {rule.title}
                   </Text>
                 </View>
-                <Text style={[boldStyles.ruleText, { fontFamily: pdfFont }]}>
+                <Text style={[boldStyles.ruleText, { fontFamily: pdfFont, color: bodyTextColor }]}>
                   <Text style={{ fontWeight: 'bold', color: secondaryColor }}>✓</Text> {rule.doText}
                 </Text>
                 {rule.varietyShots && (
                   <View style={{ marginLeft: 25, marginTop: 5, marginBottom: 5 }}>
                     {rule.varietyShots.map((shot: any, idx: number) => (
-                      <Text key={idx} style={[boldStyles.ruleText, { marginLeft: 0, marginBottom: 3, fontFamily: pdfFont }]}>
+                      <Text key={idx} style={[boldStyles.ruleText, { marginLeft: 0, marginBottom: 3, fontFamily: pdfFont, color: bodyTextColor }]}>
                         <Text style={{ fontWeight: 'bold', color: secondaryColor }}>{idx + 1}. {shot.label}:</Text> {shot.description}
                       </Text>
                     ))}
-                    <Text style={[boldStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 3, fontFamily: pdfFont }]}>
+                    <Text style={[boldStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 3, fontFamily: pdfFont, color: bodyTextColor }]}>
                       {rule.varietyNote}
                     </Text>
                   </View>
                 )}
                 {rule.dontText && (
-                  <Text style={[boldStyles.ruleText, { color: '#666666', fontFamily: pdfFont }]}>
+                  <Text style={[boldStyles.ruleText, { fontFamily: pdfFont, color: bodyTextColor }]}>
                     <Text style={{ fontWeight: 'bold', color: secondaryColor }}>✗</Text> {rule.dontText}
                   </Text>
                 )}
@@ -344,13 +340,15 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
             ))}
           </View>
 
-          <Text style={[boldStyles.footer, { fontFamily: pdfFont }]}>POWERED BY HERO</Text>
+          <Text style={[boldStyles.footer, { fontFamily: pdfFont, color: bodyTextColor, borderTopColor: bodyTextColor }]}>POWERED BY HERO</Text>
         </Page>
       </Document>
     )
   }
 
   if (style === 'classic') {
+    const classicBodyTextColor = '#333333' // Classic always has light cream background
+    
     return (
       <Document>
         <Page size="A4" style={[classicStyles.page, { fontFamily: pdfFont }]}>
@@ -359,7 +357,7 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
             <Text style={[classicStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
               Professional Video Guidelines
             </Text>
-            <Text style={[classicStyles.subHeadline, { fontFamily: pdfFont }]}>
+            <Text style={[classicStyles.subHeadline, { fontFamily: pdfFont, color: classicBodyTextColor }]}>
               Presented by {companyName}
             </Text>
           </View>
@@ -375,23 +373,23 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                     {rule.title}
                   </Text>
                 </View>
-                <Text style={[classicStyles.ruleText, { fontFamily: pdfFont }]}>
+                <Text style={[classicStyles.ruleText, { fontFamily: pdfFont, color: classicBodyTextColor }]}>
                   <Text style={{ fontFamily: pdfFont, color: secondaryColor }}>Recommended:</Text> {rule.doText}
                 </Text>
                 {rule.varietyShots && (
                   <View style={{ marginLeft: 32, marginTop: 5, marginBottom: 5 }}>
                     {rule.varietyShots.map((shot: any, idx: number) => (
-                      <Text key={idx} style={[classicStyles.ruleText, { marginLeft: 0, marginBottom: 4, fontFamily: pdfFont }]}>
+                      <Text key={idx} style={[classicStyles.ruleText, { marginLeft: 0, marginBottom: 4, fontFamily: pdfFont, color: classicBodyTextColor }]}>
                         <Text style={{ fontFamily: pdfFont, color: secondaryColor }}>{idx + 1}. {shot.label}:</Text> {shot.description}
                       </Text>
                     ))}
-                    <Text style={[classicStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 4, fontFamily: pdfFont }]}>
+                    <Text style={[classicStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 4, fontFamily: pdfFont, color: classicBodyTextColor }]}>
                       {rule.varietyNote}
                     </Text>
                   </View>
                 )}
                 {rule.dontText && (
-                  <Text style={[classicStyles.ruleText, { color: '#666666', fontFamily: pdfFont }]}>
+                  <Text style={[classicStyles.ruleText, { fontFamily: pdfFont, color: classicBodyTextColor }]}>
                     <Text style={{ fontFamily: pdfFont, color: secondaryColor }}>Avoid:</Text> {rule.dontText}
                   </Text>
                 )}
@@ -399,12 +397,14 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
             ))}
           </View>
 
-          <Text style={[classicStyles.footer, { fontFamily: pdfFont }]}>Powered by Hero</Text>
+          <Text style={[classicStyles.footer, { fontFamily: pdfFont, color: classicBodyTextColor }]}>Powered by Hero</Text>
         </Page>
       </Document>
     )
   }
 
+  const modernBodyTextColor = '#333333' // Modern always has white background
+  
   return (
     <Document>
       <Page size="A4" style={[modernStyles.page, { fontFamily: pdfFont }]}>
@@ -413,7 +413,7 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
           <Text style={[modernStyles.mainHeadline, { color: primaryColor, fontFamily: pdfFont }]}>
             How to Film Pro-Quality Video on Your Phone
           </Text>
-          <Text style={[modernStyles.subHeadline, { fontFamily: pdfFont }]}>
+          <Text style={[modernStyles.subHeadline, { fontFamily: pdfFont, color: modernBodyTextColor }]}>
             A 5-step guide from your friends at {companyName}
           </Text>
         </View>
@@ -424,23 +424,23 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
               <Text style={[modernStyles.ruleTitle, { color: primaryColor, fontFamily: pdfFont }]}>
                 {index + 1}. {rule.title}
               </Text>
-              <Text style={[modernStyles.ruleText, { fontFamily: pdfFont }]}>
+              <Text style={[modernStyles.ruleText, { fontFamily: pdfFont, color: modernBodyTextColor }]}>
                 <Text style={{ fontWeight: 'bold', color: secondaryColor }}>Do:</Text> {rule.doText}
               </Text>
               {rule.varietyShots && (
                 <View style={{ marginLeft: 20, marginTop: 5, marginBottom: 5 }}>
                   {rule.varietyShots.map((shot: any, idx: number) => (
-                    <Text key={idx} style={[modernStyles.ruleText, { marginLeft: 0, marginBottom: 3, fontFamily: pdfFont }]}>
+                    <Text key={idx} style={[modernStyles.ruleText, { marginLeft: 0, marginBottom: 3, fontFamily: pdfFont, color: modernBodyTextColor }]}>
                       <Text style={{ fontWeight: 'bold', color: secondaryColor }}>{idx + 1}. {shot.label}:</Text> {shot.description}
                     </Text>
                   ))}
-                  <Text style={[modernStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 3, fontFamily: pdfFont }]}>
+                  <Text style={[modernStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 3, fontFamily: pdfFont, color: modernBodyTextColor }]}>
                     {rule.varietyNote}
                   </Text>
                 </View>
               )}
               {rule.dontText && (
-                <Text style={[modernStyles.ruleText, { fontFamily: pdfFont }]}>
+                <Text style={[modernStyles.ruleText, { fontFamily: pdfFont, color: modernBodyTextColor }]}>
                   <Text style={{ fontWeight: 'bold', color: secondaryColor }}>Don't:</Text> {rule.dontText}
                 </Text>
               )}
@@ -448,7 +448,7 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
           ))}
         </View>
 
-        <Text style={[modernStyles.footer, { fontFamily: pdfFont }]}>Powered by Hero</Text>
+        <Text style={[modernStyles.footer, { fontFamily: pdfFont, color: modernBodyTextColor }]}>Powered by Hero</Text>
       </Page>
     </Document>
   )
