@@ -6,6 +6,15 @@ This is a Next.js-based lead magnet application that helps social media managers
 
 ## Recent Changes
 
+**November 13, 2025 - Background Removal Feature Complete**
+- Added "Magic-Remove Background" checkbox that appears after logo upload
+- Integrated Remove.bg API for professional background removal
+- Implemented graceful fallback when API key is missing or removal fails
+- Fixed critical MIME type bug to preserve original format when removal is skipped
+- Extended GeneratorContext to include removeBackground state
+- Updated API route with background removal logic and proper error handling
+- All implementations reviewed and approved by architect
+
 **November 13, 2025 - Style Selection Feature Complete**
 - Added "Choose Your Style" feature with three distinct PDF layout options
 - Implemented Modern style (clean, minimal, lots of white space)
@@ -28,7 +37,8 @@ This is a Next.js-based lead magnet application that helps social media managers
 
 **Next Steps**
 - Add RESEND_API_KEY environment variable to test email functionality
-- Test all three style variations end-to-end
+- Add REMOVE_BG_API_KEY environment variable to enable background removal feature
+- Test all three style variations end-to-end with and without background removal
 - Optional: Configure allowedDevOrigins in next.config.js to suppress warnings
 
 ## User Preferences
@@ -52,11 +62,11 @@ Preferred communication style: Simple, everyday language.
 - **Cons**: Mixing styling approaches requires careful management
 
 **State Management: React Context API**
-- **Problem**: Share user input (company name, logo, brand color, style) between Generator Tool and Live Preview components
+- **Problem**: Share user input (company name, logo, brand color, style, background removal) between Generator Tool and Live Preview components
 - **Solution**: Custom GeneratorContext with React Context API and hooks
 - **Rationale**: Simple state sharing without external dependencies; sufficient for this application's limited state complexity
 - **Structure**: Centralized state in `GeneratorContext.tsx` with provider wrapping the main page
-- **State**: companyName, brandColor, logo, style (modern | bold | classic)
+- **State**: companyName, brandColor, logo, style (modern | bold | classic), removeBackground (boolean)
 
 **Real-time Preview System**
 - **Problem**: Users need immediate visual feedback as they customize their guide
