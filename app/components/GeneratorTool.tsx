@@ -124,33 +124,38 @@ export default function GeneratorTool() {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Brand Color
           </label>
-          <div className="grid grid-cols-3 gap-3 mb-3">
+          <div className="grid grid-cols-6 gap-3 mb-3">
             {presetColors.map((color) => (
               <button
                 key={color.value}
                 onClick={() => setBrandColor(color.value)}
                 className={`h-12 rounded-lg transition-all ${
                   brandColor === color.value
-                    ? 'ring-4 ring-offset-2 ring-gray-400'
-                    : 'hover:scale-105'
+                    ? 'ring-4 ring-offset-2 ring-blue-400'
+                    : 'hover:scale-105 border-2 border-gray-200'
                 }`}
                 style={{ backgroundColor: color.value }}
                 title={color.name}
               />
             ))}
           </div>
-          <div className="flex items-center gap-3">
-            <label htmlFor="custom-color" className="text-sm text-gray-600">
-              Custom Color:
+          <div className="flex items-center gap-2">
+            <label htmlFor="custom-color" className="text-sm text-gray-600 whitespace-nowrap">
+              Or enter HEX:
             </label>
             <input
-              type="color"
+              type="text"
               id="custom-color"
               value={brandColor}
               onChange={(e) => setBrandColor(e.target.value)}
-              className="h-10 w-20 rounded cursor-pointer"
+              placeholder="#000000"
+              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none font-mono text-sm"
+              maxLength={7}
             />
-            <span className="text-sm font-mono text-gray-600">{brandColor}</span>
+            <div
+              className="w-10 h-10 rounded-lg border-2 border-gray-300"
+              style={{ backgroundColor: brandColor }}
+            />
           </div>
         </div>
 
