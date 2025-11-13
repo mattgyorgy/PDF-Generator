@@ -9,6 +9,7 @@ interface ConversionModalProps {
 }
 
 export default function ConversionModal({ isOpen, onClose }: ConversionModalProps) {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
@@ -17,12 +18,20 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
   const handleClose = () => {
     setStatus('idle')
     setErrorMessage('')
+    setName('')
+    setEmail('')
     onClose()
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    if (!name) {
+      setErrorMessage('Please enter your name')
+      setStatus('error')
+      return
+    }
+
     if (!email) {
       setErrorMessage('Please enter your email address')
       setStatus('error')
@@ -68,6 +77,7 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
       }
 
       setStatus('success')
+      setName('')
       setEmail('')
     } catch (error) {
       setStatus('error')
@@ -114,6 +124,22 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="name" className="block text-xs font-medium text-gray-300 mb-1.5">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
+                  required
+                  disabled={status === 'loading'}
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:ring-2 focus:ring-[#D4FB5D] focus:border-transparent outline-none transition disabled:bg-gray-900 disabled:cursor-not-allowed text-sm"
+                />
+              </div>
+
               <div>
                 <label htmlFor="email" className="block text-xs font-medium text-gray-300 mb-1.5">
                   Email Address
