@@ -13,6 +13,7 @@ This is a Next.js-based lead magnet application that helps social media managers
 - Updated Material-UI icons to match new topics (VideocamIcon for stability, FiberManualRecordIcon for recording, GridViewIcon for variety)
 - Implemented conditional rendering for varietyShots array and optional dontText across all 6 style renderers (3 preview, 3 PDF)
 - Maintained content consistency between LivePreview.tsx and PdfDocument.tsx
+- Updated preview to use proper A4 document proportions (595px × 842px at 72dpi) with mobile-responsive layout
 - All implementations reviewed and approved by architect
 
 **November 13, 2025 - UI/UX Improvements to Form Layout**

@@ -254,8 +254,8 @@ export default function LivePreview() {
   )
 
   return (
-    <div className="bg-gray-100 rounded-lg p-8 flex justify-center items-start sticky top-8">
-      <div className="bg-white shadow-2xl overflow-y-auto" style={{ width: '400px', maxHeight: '800px' }}>
+    <div className="bg-gray-100 rounded-lg p-4 md:p-8 flex justify-center items-start sticky top-8">
+      <div className="bg-white shadow-2xl overflow-y-auto w-full max-w-[595px]" style={{ maxHeight: '842px' }}>
         {style === 'modern' && renderModernStyle()}
         {style === 'bold' && renderBoldStyle()}
         {style === 'classic' && renderClassicStyle()}
