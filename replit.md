@@ -10,6 +10,21 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 14, 2025 - Pipedrive CRM Integration**
+- Integrated Pipedrive API to automatically capture leads when users download filming guides
+- Created comprehensive Pipedrive utility library (app/lib/pipedrive.ts) with:
+  - Organization search and creation (prevents duplicates)
+  - Person creation linked to Organizations
+  - Lead label management (finds or creates "Video Guide Lead" label with UUID)
+  - Lead creation with proper organization and person linking
+  - Note attachment for download metadata (date and logo upload status)
+- Updated ConversionModal to capture and send user's name to API
+- Updated /api/generate route to call Pipedrive integration after successful email delivery
+- All Pipedrive operations are non-blocking - failures don't break PDF generation or email delivery
+- Each lead includes: Name, Email, Organization, Download Date, Logo Uploaded status
+- Leads are tagged with "Video Guide Lead" label for easy filtering in Pipedrive
+- API token stored securely in Replit secrets (PIPEDRIVE_API_KEY)
+
 **November 14, 2025 - Background Fill Fix for All Templates**
 - Fixed Classic template background not extending to full preview height
 - Removed `bg-white` from outer container in LivePreview.tsx to allow template backgrounds to fill completely
