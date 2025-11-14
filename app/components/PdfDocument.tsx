@@ -16,12 +16,12 @@ const isLightColor = (hexColor: string): boolean => {
 
 const modernStyles = StyleSheet.create({
   page: {
-    padding: 35,
+    padding: 45,
     backgroundColor: '#ffffff',
     fontFamily: 'Helvetica',
   },
   header: {
-    marginBottom: 20,
+    marginBottom: 18,
     textAlign: 'center',
   },
   logo: {
@@ -42,10 +42,10 @@ const modernStyles = StyleSheet.create({
     color: '#666666',
   },
   rulesContainer: {
-    marginTop: 15,
+    marginTop: 14,
   },
   rule: {
-    marginBottom: 14,
+    marginBottom: 13,
     paddingLeft: 12,
     borderLeftWidth: 3,
     borderLeftStyle: 'solid',
@@ -74,11 +74,11 @@ const modernStyles = StyleSheet.create({
 
 const boldStyles = StyleSheet.create({
   page: {
-    padding: 28,
+    padding: 38,
     fontFamily: 'Helvetica-Bold',
   },
   header: {
-    marginBottom: 18,
+    marginBottom: 16,
     textAlign: 'center',
   },
   logo: {
@@ -101,10 +101,10 @@ const boldStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
   rulesContainer: {
-    marginTop: 18,
+    marginTop: 16,
   },
   rule: {
-    marginBottom: 12,
+    marginBottom: 11,
     padding: 12,
   },
   ruleHeader: {
@@ -148,14 +148,14 @@ const boldStyles = StyleSheet.create({
 
 const classicStyles = StyleSheet.create({
   page: {
-    padding: 35,
+    padding: 45,
     backgroundColor: '#fef9f3',
     fontFamily: 'Times-Roman',
   },
   header: {
-    marginBottom: 20,
+    marginBottom: 18,
     textAlign: 'center',
-    paddingBottom: 15,
+    paddingBottom: 14,
     borderBottomWidth: 2,
     borderBottomColor: '#666666',
     borderBottomStyle: 'solid',
@@ -180,11 +180,11 @@ const classicStyles = StyleSheet.create({
     fontStyle: 'italic',
   },
   rulesContainer: {
-    marginTop: 18,
+    marginTop: 16,
   },
   rule: {
-    marginBottom: 14,
-    paddingBottom: 12,
+    marginBottom: 13,
+    paddingBottom: 11,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
     borderBottomStyle: 'solid',
