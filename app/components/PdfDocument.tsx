@@ -16,49 +16,49 @@ const isLightColor = (hexColor: string): boolean => {
 
 const modernStyles = StyleSheet.create({
   page: {
-    padding: 40,
+    padding: 35,
     backgroundColor: '#ffffff',
     fontFamily: 'Helvetica',
   },
   header: {
-    marginBottom: 30,
+    marginBottom: 20,
     textAlign: 'center',
   },
   logo: {
-    width: 60,
-    height: 60,
-    marginBottom: 15,
+    width: 50,
+    height: 50,
+    marginBottom: 10,
     marginLeft: 'auto',
     marginRight: 'auto',
     objectFit: 'contain',
   },
   mainHeadline: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  subHeadline: {
-    fontSize: 12,
-    color: '#666666',
-  },
-  rulesContainer: {
-    marginTop: 20,
-  },
-  rule: {
-    marginBottom: 20,
-    paddingLeft: 15,
-    borderLeftWidth: 4,
-    borderLeftStyle: 'solid',
-  },
-  ruleTitle: {
-    fontSize: 14,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 6,
   },
-  ruleText: {
-    fontSize: 10,
-    lineHeight: 1.5,
+  subHeadline: {
+    fontSize: 11,
+    color: '#666666',
+  },
+  rulesContainer: {
+    marginTop: 15,
+  },
+  rule: {
+    marginBottom: 14,
+    paddingLeft: 12,
+    borderLeftWidth: 3,
+    borderLeftStyle: 'solid',
+  },
+  ruleTitle: {
+    fontSize: 13,
+    fontWeight: 'bold',
     marginBottom: 4,
+  },
+  ruleText: {
+    fontSize: 9.5,
+    lineHeight: 1.4,
+    marginBottom: 3,
     color: '#333333',
   },
   footer: {
@@ -74,63 +74,63 @@ const modernStyles = StyleSheet.create({
 
 const boldStyles = StyleSheet.create({
   page: {
-    padding: 30,
+    padding: 28,
     fontFamily: 'Helvetica-Bold',
   },
   header: {
-    marginBottom: 25,
+    marginBottom: 18,
     textAlign: 'center',
   },
   logo: {
-    width: 70,
-    height: 70,
-    marginBottom: 12,
+    width: 55,
+    height: 55,
+    marginBottom: 10,
     marginLeft: 'auto',
     marginRight: 'auto',
     objectFit: 'contain',
   },
   mainHeadline: {
-    fontSize: 26,
+    fontSize: 22,
     fontWeight: 'heavy',
-    marginBottom: 8,
+    marginBottom: 6,
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   subHeadline: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: 'bold',
   },
   rulesContainer: {
-    marginTop: 25,
+    marginTop: 18,
   },
   rule: {
-    marginBottom: 15,
-    padding: 15,
+    marginBottom: 12,
+    padding: 12,
   },
   ruleHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   ruleNumber: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
+    width: 22,
+    height: 22,
+    borderRadius: 11,
     textAlign: 'center',
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: 'heavy',
     paddingTop: 5,
   },
   ruleTitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 'heavy',
-    marginLeft: 10,
+    marginLeft: 8,
     textTransform: 'uppercase',
   },
   ruleText: {
-    fontSize: 10,
-    lineHeight: 1.5,
-    marginBottom: 4,
+    fontSize: 9.5,
+    lineHeight: 1.4,
+    marginBottom: 3,
   },
   footer: {
     position: 'absolute',
@@ -148,76 +148,76 @@ const boldStyles = StyleSheet.create({
 
 const classicStyles = StyleSheet.create({
   page: {
-    padding: 50,
+    padding: 35,
     backgroundColor: '#fef9f3',
     fontFamily: 'Times-Roman',
   },
   header: {
-    marginBottom: 40,
+    marginBottom: 20,
     textAlign: 'center',
-    paddingBottom: 25,
+    paddingBottom: 15,
     borderBottomWidth: 2,
     borderBottomColor: '#666666',
     borderBottomStyle: 'solid',
   },
   logo: {
-    width: 80,
-    height: 80,
-    marginBottom: 20,
+    width: 55,
+    height: 55,
+    marginBottom: 12,
     marginLeft: 'auto',
     marginRight: 'auto',
     objectFit: 'contain',
   },
   mainHeadline: {
-    fontSize: 20,
+    fontSize: 18,
     fontFamily: 'Times-Bold',
-    marginBottom: 10,
+    marginBottom: 6,
     letterSpacing: 0.5,
   },
   subHeadline: {
-    fontSize: 11,
+    fontSize: 10,
     color: '#555555',
     fontStyle: 'italic',
   },
   rulesContainer: {
-    marginTop: 30,
+    marginTop: 18,
   },
   rule: {
-    marginBottom: 25,
-    paddingBottom: 20,
+    marginBottom: 14,
+    paddingBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#cccccc',
     borderBottomStyle: 'solid',
   },
   ruleHeader: {
     flexDirection: 'row',
-    marginBottom: 10,
+    marginBottom: 6,
   },
   ruleNumber: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
     borderWidth: 2,
     borderStyle: 'solid',
     textAlign: 'center',
-    fontSize: 10,
+    fontSize: 9,
     fontFamily: 'Times-Bold',
-    paddingTop: 3,
-    marginRight: 12,
+    paddingTop: 2,
+    marginRight: 10,
   },
   ruleTitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontFamily: 'Times-Bold',
-    marginBottom: 8,
+    marginBottom: 5,
     textTransform: 'uppercase',
     letterSpacing: 0.8,
   },
   ruleText: {
-    fontSize: 10,
-    lineHeight: 1.6,
-    marginBottom: 6,
+    fontSize: 9.5,
+    lineHeight: 1.4,
+    marginBottom: 4,
     color: '#333333',
-    marginLeft: 32,
+    marginLeft: 28,
   },
   footer: {
     position: 'absolute',
@@ -339,13 +339,13 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                   <Text style={{ fontWeight: 'bold', color: secondaryColor, fontSize: 14 }}>✓</Text> {rule.doText}
                 </Text>
                 {rule.varietyShots && (
-                  <View style={{ marginLeft: 25, marginTop: 5, marginBottom: 5 }}>
+                  <View style={{ marginLeft: 20, marginTop: 3, marginBottom: 3 }}>
                     {rule.varietyShots.map((shot: any, idx: number) => (
-                      <Text key={idx} style={[boldStyles.ruleText, { marginLeft: 0, marginBottom: 3, fontFamily: pdfFont, color: bodyTextColor }]}>
+                      <Text key={idx} style={[boldStyles.ruleText, { marginLeft: 0, marginBottom: 2, fontFamily: pdfFont, color: bodyTextColor }]}>
                         <Text style={{ fontWeight: 'bold', color: secondaryColor }}>{idx + 1}. {shot.label}:</Text> {shot.description}
                       </Text>
                     ))}
-                    <Text style={[boldStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 3, fontFamily: pdfFont, color: bodyTextColor }]}>
+                    <Text style={[boldStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 2, fontFamily: pdfFont, color: bodyTextColor }]}>
                       {rule.varietyNote}
                     </Text>
                   </View>
@@ -394,13 +394,13 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                   <Text style={{ fontFamily: pdfFont, color: secondaryColor }}>Recommended:</Text> {rule.doText}
                 </Text>
                 {rule.varietyShots && (
-                  <View style={{ marginLeft: 32, marginTop: 5, marginBottom: 5 }}>
+                  <View style={{ marginLeft: 28, marginTop: 3, marginBottom: 3 }}>
                     {rule.varietyShots.map((shot: any, idx: number) => (
-                      <Text key={idx} style={[classicStyles.ruleText, { marginLeft: 0, marginBottom: 4, fontFamily: pdfFont, color: classicBodyTextColor }]}>
+                      <Text key={idx} style={[classicStyles.ruleText, { marginLeft: 0, marginBottom: 3, fontFamily: pdfFont, color: classicBodyTextColor }]}>
                         <Text style={{ fontFamily: pdfFont, color: secondaryColor }}>{idx + 1}. {shot.label}:</Text> {shot.description}
                       </Text>
                     ))}
-                    <Text style={[classicStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 4, fontFamily: pdfFont, color: classicBodyTextColor }]}>
+                    <Text style={[classicStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 2, fontFamily: pdfFont, color: classicBodyTextColor }]}>
                       {rule.varietyNote}
                     </Text>
                   </View>
@@ -443,13 +443,13 @@ export default function PdfDocument({ companyName, primaryColor, secondaryColor,
                 <Text style={{ fontWeight: 'bold', color: secondaryColor }}>Do:</Text> {rule.doText}
               </Text>
               {rule.varietyShots && (
-                <View style={{ marginLeft: 20, marginTop: 5, marginBottom: 5 }}>
+                <View style={{ marginLeft: 15, marginTop: 3, marginBottom: 3 }}>
                   {rule.varietyShots.map((shot: any, idx: number) => (
-                    <Text key={idx} style={[modernStyles.ruleText, { marginLeft: 0, marginBottom: 3, fontFamily: pdfFont, color: modernBodyTextColor }]}>
+                    <Text key={idx} style={[modernStyles.ruleText, { marginLeft: 0, marginBottom: 2, fontFamily: pdfFont, color: modernBodyTextColor }]}>
                       <Text style={{ fontWeight: 'bold', color: secondaryColor }}>{idx + 1}. {shot.label}:</Text> {shot.description}
                     </Text>
                   ))}
-                  <Text style={[modernStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 3, fontFamily: pdfFont, color: modernBodyTextColor }]}>
+                  <Text style={[modernStyles.ruleText, { marginLeft: 0, fontStyle: 'italic', marginTop: 2, fontFamily: pdfFont, color: modernBodyTextColor }]}>
                     {rule.varietyNote}
                   </Text>
                 </View>

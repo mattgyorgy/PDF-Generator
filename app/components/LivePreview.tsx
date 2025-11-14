@@ -94,53 +94,53 @@ export default function LivePreview() {
     const bodyTextColor = '#333333' // Modern style always has white background
     
     return (
-      <div className="p-8 flex flex-col" style={{ fontFamily }}>
-        <div className="text-center mb-6">
+      <div className="p-7 flex flex-col" style={{ fontFamily }}>
+        <div className="text-center mb-5">
           {displayLogoUrl ? (
             <img
               src={displayLogoUrl}
               alt="Company logo"
-              className={`h-12 ${logoAlignClass} mb-4 object-contain`}
+              className={`h-10 ${logoAlignClass} mb-2 object-contain`}
             />
           ) : (
-            <div className="h-12 mb-4 flex items-center justify-center text-gray-400 text-sm">
+            <div className="h-10 mb-2 flex items-center justify-center text-gray-400 text-sm">
               [Your Logo]
             </div>
           )}
-          <h1 className="text-xl font-bold mb-2" style={{ color: primaryColor, fontFamily }}>
+          <h1 className="text-lg font-bold mb-1" style={{ color: primaryColor, fontFamily }}>
             How to Film Pro-Quality Video on Your Phone
           </h1>
-          <p className="text-sm" style={{ fontFamily, color: bodyTextColor }}>
+          <p className="text-[11px]" style={{ fontFamily, color: bodyTextColor }}>
             A 5-step guide from your friends at {companyName || '[Your Company]'}
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {rules.map((rule, index) => {
             const Icon = rule.icon
             return (
-              <div key={index} className="border-l-4 pl-3 py-1" style={{ borderColor: primaryColor }}>
-                <div className="flex items-center gap-2 mb-1">
-                  <Icon style={{ color: secondaryColor, fontSize: '18px' }} />
-                  <h3 className="font-bold text-xs" style={{ color: primaryColor }}>
+              <div key={index} className="border-l-[3px] pl-2.5 py-0.5" style={{ borderColor: primaryColor }}>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <Icon style={{ color: secondaryColor, fontSize: '16px' }} />
+                  <h3 className="font-bold text-[11px]" style={{ color: primaryColor }}>
                     {index + 1}. {rule.title}
                   </h3>
                 </div>
-                <p className="text-xs mb-1" style={{ color: bodyTextColor }}>
+                <p className="text-[10px] mb-0.5" style={{ color: bodyTextColor }}>
                   <span className="font-semibold" style={{ color: secondaryColor }}>Do:</span> {rule.doText}
                 </p>
                 {rule.varietyShots && (
-                  <div className="ml-4 my-2 space-y-1">
+                  <div className="ml-3 my-1 space-y-0.5">
                     {rule.varietyShots.map((shot: any, idx: number) => (
-                      <p key={idx} className="text-xs" style={{ color: bodyTextColor }}>
+                      <p key={idx} className="text-[10px]" style={{ color: bodyTextColor }}>
                         <span className="font-semibold" style={{ color: secondaryColor }}>{idx + 1}. {shot.label}:</span> {shot.description}
                       </p>
                     ))}
-                    <p className="text-xs italic mt-1" style={{ color: bodyTextColor }}>{rule.varietyNote}</p>
+                    <p className="text-[10px] italic mt-0.5" style={{ color: bodyTextColor }}>{rule.varietyNote}</p>
                   </div>
                 )}
                 {rule.dontText && (
-                  <p className="text-xs" style={{ color: bodyTextColor }}>
+                  <p className="text-[10px]" style={{ color: bodyTextColor }}>
                     <span className="font-semibold" style={{ color: secondaryColor }}>Don&apos;t:</span> {rule.dontText}
                   </p>
                 )}
@@ -156,56 +156,56 @@ export default function LivePreview() {
     const bodyTextColor = isLightColor(primaryColor) ? '#000000' : '#ffffff'
     
     return (
-      <div className="p-8 flex flex-col" style={{ fontFamily, backgroundColor: primaryColor }}>
-        <div className="text-center mb-6">
+      <div className="p-7 flex flex-col" style={{ fontFamily, backgroundColor: primaryColor }}>
+        <div className="text-center mb-4">
           {displayLogoUrl ? (
             <img
               src={displayLogoUrl}
               alt="Company logo"
-              className={`h-12 ${logoAlignClass} mb-4 object-contain`}
+              className={`h-11 ${logoAlignClass} mb-2 object-contain`}
             />
           ) : (
-            <div className="h-12 mb-4 flex items-center justify-center text-sm" style={{ color: bodyTextColor, opacity: 0.5 }}>
+            <div className="h-11 mb-2 flex items-center justify-center text-sm" style={{ color: bodyTextColor, opacity: 0.5 }}>
               [Your Logo]
             </div>
           )}
-          <h1 className="text-xl font-black mb-2 uppercase tracking-tight" style={{ color: secondaryColor, fontFamily }}>
+          <h1 className="text-lg font-black mb-1 uppercase tracking-tight" style={{ color: secondaryColor, fontFamily }}>
             Video Filming Tips
           </h1>
-          <p className="text-sm font-semibold" style={{ fontFamily, color: bodyTextColor }}>
+          <p className="text-[10px] font-semibold" style={{ fontFamily, color: bodyTextColor }}>
             From {companyName || '[Your Company]'}
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {rules.map((rule, index) => {
             const Icon = rule.icon
             return (
-              <div key={index} className="border-l-4 pl-3 py-1" style={{ borderColor: secondaryColor }}>
+              <div key={index} className="p-2.5">
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center font-black text-[10px]" style={{ backgroundColor: secondaryColor, color: isLightColor(secondaryColor) ? '#000000' : '#ffffff' }}>
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center font-black text-[9px]" style={{ backgroundColor: secondaryColor, color: isLightColor(secondaryColor) ? '#000000' : '#ffffff' }}>
                     {index + 1}
                   </div>
-                  <h3 className="font-black text-xs uppercase" style={{ color: secondaryColor }}>
+                  <h3 className="font-black text-[10px] uppercase" style={{ color: secondaryColor }}>
                     {rule.title}
                   </h3>
                 </div>
-                <p className="text-xs mb-1" style={{ color: bodyTextColor }}>
-                  <span className="font-semibold text-base" style={{ color: secondaryColor }}>✓</span> {rule.doText}
+                <p className="text-[10px] mb-0.5" style={{ color: bodyTextColor }}>
+                  <span className="font-semibold text-sm" style={{ color: secondaryColor }}>✓</span> {rule.doText}
                 </p>
                 {rule.varietyShots && (
-                  <div className="ml-4 my-2 space-y-1">
+                  <div className="ml-4 my-1 space-y-0.5">
                     {rule.varietyShots.map((shot: any, idx: number) => (
-                      <p key={idx} className="text-xs" style={{ color: bodyTextColor }}>
+                      <p key={idx} className="text-[10px]" style={{ color: bodyTextColor }}>
                         <span className="font-semibold" style={{ color: secondaryColor }}>{idx + 1}. {shot.label}:</span> {shot.description}
                       </p>
                     ))}
-                    <p className="text-xs italic mt-1" style={{ color: bodyTextColor }}>{rule.varietyNote}</p>
+                    <p className="text-[10px] italic mt-0.5" style={{ color: bodyTextColor }}>{rule.varietyNote}</p>
                   </div>
                 )}
                 {rule.dontText && (
-                  <p className="text-xs" style={{ color: bodyTextColor }}>
-                    <span className="font-semibold text-base" style={{ color: secondaryColor }}>✗</span> {rule.dontText}
+                  <p className="text-[10px]" style={{ color: bodyTextColor }}>
+                    <span className="font-semibold text-sm" style={{ color: secondaryColor }}>✗</span> {rule.dontText}
                   </p>
                 )}
               </div>
@@ -220,55 +220,55 @@ export default function LivePreview() {
     const bodyTextColor = '#333333' // Classic style always has light amber background
     
     return (
-      <div className="p-8 flex flex-col bg-amber-50" style={{ fontFamily }}>
-        <div className="text-center mb-6 pb-4 border-b border-gray-300">
+      <div className="p-7 flex flex-col bg-amber-50" style={{ fontFamily }}>
+        <div className="text-center mb-5 pb-3 border-b-2 border-gray-400">
           {displayLogoUrl ? (
             <img
               src={displayLogoUrl}
               alt="Company logo"
-              className={`h-12 ${logoAlignClass} mb-4 object-contain opacity-90`}
+              className={`h-11 ${logoAlignClass} mb-2 object-contain opacity-90`}
             />
           ) : (
-            <div className="h-12 mb-4 flex items-center justify-center text-gray-400 text-sm">
+            <div className="h-11 mb-2 flex items-center justify-center text-gray-400 text-sm">
               [Your Logo]
             </div>
           )}
-          <h1 className="text-xl font-serif font-bold mb-2 tracking-wide" style={{ color: primaryColor, fontFamily }}>
+          <h1 className="text-base font-serif font-bold mb-1 tracking-wide" style={{ color: primaryColor, fontFamily }}>
             Professional Video Guidelines
           </h1>
-          <p className="text-sm italic" style={{ fontFamily, color: bodyTextColor }}>
+          <p className="text-[10px] italic" style={{ fontFamily, color: bodyTextColor }}>
             Presented by {companyName || '[Your Company]'}
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {rules.map((rule, index) => {
             const Icon = rule.icon
             return (
-              <div key={index} className="border-l-4 pl-3 py-1" style={{ borderColor: primaryColor }}>
+              <div key={index} className="pb-2 border-b border-gray-300">
                 <div className="flex items-center gap-2 mb-1">
-                  <div className="w-6 h-6 rounded-full border-2 flex items-center justify-center font-bold text-[10px]" style={{ borderColor: primaryColor, color: primaryColor }}>
+                  <div className="w-4 h-4 rounded-full border-2 flex items-center justify-center font-bold text-[8px]" style={{ borderColor: primaryColor, color: primaryColor }}>
                     {index + 1}
                   </div>
-                  <h3 className="font-bold text-xs uppercase tracking-wide" style={{ color: primaryColor }}>
+                  <h3 className="font-bold text-[10px] uppercase tracking-wide" style={{ color: primaryColor }}>
                     {rule.title}
                   </h3>
                 </div>
-                <p className="text-xs mb-1" style={{ color: bodyTextColor }}>
+                <p className="text-[10px] mb-0.5 ml-6" style={{ color: bodyTextColor }}>
                   <span className="font-semibold" style={{ color: secondaryColor }}>Recommended:</span> {rule.doText}
                 </p>
                 {rule.varietyShots && (
-                  <div className="ml-4 my-2 space-y-1">
+                  <div className="ml-6 my-1 space-y-0.5">
                     {rule.varietyShots.map((shot: any, idx: number) => (
-                      <p key={idx} className="text-xs" style={{ color: bodyTextColor }}>
+                      <p key={idx} className="text-[10px]" style={{ color: bodyTextColor }}>
                         <span className="font-semibold" style={{ color: secondaryColor }}>{idx + 1}. {shot.label}:</span> {shot.description}
                       </p>
                     ))}
-                    <p className="text-xs italic mt-1" style={{ color: bodyTextColor }}>{rule.varietyNote}</p>
+                    <p className="text-[10px] italic mt-0.5" style={{ color: bodyTextColor }}>{rule.varietyNote}</p>
                   </div>
                 )}
                 {rule.dontText && (
-                  <p className="text-xs" style={{ color: bodyTextColor }}>
+                  <p className="text-[10px] ml-6" style={{ color: bodyTextColor }}>
                     <span className="font-semibold" style={{ color: secondaryColor }}>Avoid:</span> {rule.dontText}
                   </p>
                 )}

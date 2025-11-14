@@ -10,6 +10,16 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 14, 2025 - Single-Page PDF Optimization & Email Fixes**
+- Optimized PDF layout spacing to ensure all content fits on a single A4 page (842pt height)
+- Reduced padding, margins, and spacing across all three styles (Modern: ~667pt, Bold: ~825pt, Classic: ~797pt)
+- Updated LivePreview component to match PDF spacing for accurate on-screen representation
+- Fixed Resend email attachment format: changed from base64 string to Buffer (Resend's recommended format)
+- Updated sender email from `onboarding@resend.dev` to `hello@heronetwork.io` (verified domain)
+- Replaced broken Hero Network logo image with styled text logo (lime green on black) for email template
+- Added error handling and logging for Resend API responses
+- Modal now auto-closes 2.5 seconds after successful PDF generation
+
 **November 13, 2025 - Professional Email Design & Logo Alignment**
 - Redesigned email template with Hero Network branding (black #000000 and lime green #D4FB5D)
 - Professional HTML email layout with responsive tables for cross-client compatibility
