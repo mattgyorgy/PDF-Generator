@@ -103,7 +103,12 @@ export async function POST(request: NextRequest) {
                 <!-- Header with Logo -->
                 <tr>
                   <td style="background-color: #000000; padding: 40px 40px 30px; text-align: center;">
-                    <img src="https://i.postimg.cc/RhkVwCSh/hero-logo.png" alt="Hero Network" style="height: 40px; width: auto; display: block; margin: 0 auto;">
+                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 32px; font-weight: 700; color: #D4FB5D; letter-spacing: -0.5px;">
+                      hero<span style="color: #D4FB5D;">»</span>
+                    </div>
+                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; font-weight: 600; color: #D4FB5D; letter-spacing: 2px; margin-top: 4px;">
+                      NETWORK
+                    </div>
                   </td>
                 </tr>
                 
@@ -177,7 +182,7 @@ export async function POST(request: NextRequest) {
     `
 
     const { data, error } = await resend.emails.send({
-      from: 'Hero Network <onboarding@resend.dev>',
+      from: 'Hero Network <hello@heronetwork.io>',
       to: [email],
       subject: "Your Custom Filming Guide is Ready! 🎬",
       html: emailHtml,
