@@ -3,6 +3,7 @@ import { Resend } from 'resend'
 import { renderToBuffer } from '@react-pdf/renderer'
 import PdfDocument from '@/app/components/PdfDocument'
 import React from 'react'
+import { captureLead } from '@/app/lib/pipedrive'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -42,6 +43,7 @@ async function removeImageBackground(imageBuffer: ArrayBuffer): Promise<ArrayBuf
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData()
+    const name = formData.get('name') as string
     const email = formData.get('email') as string
     const companyName = formData.get('companyName') as string
     const primaryColor = formData.get('primaryColor') as string
@@ -52,7 +54,7 @@ export async function POST(request: NextRequest) {
     const removeBackground = formData.get('removeBackground') === 'true'
     const logo = formData.get('logo') as File
 
-    if (!email || !companyName || !primaryColor || !logo) {
+    if (!name || !email || !companyName || !primaryColor || !logo) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -203,6 +205,24 @@ export async function POST(request: NextRequest) {
     }
 
     console.log('Email sent successfully:', data)
+
+    try {
+      const leadCaptured = await captureLead(
+        name,
+        email,
+        companyName,
+        !!logo
+      )
+      
+      if (leadCaptured) {
+        console.log('Lead successfully captured in Pipedrive')
+      } else {
+        console.warn('Failed to capture lead in Pipedrive, but email was sent')
+      }
+    } catch (pipedriveError) {
+      console.error('Pipedrive integration error (non-critical):', pipedriveError)
+    }
+
     return NextResponse.json({ status: 'ok' }, { status: 200 })
   } catch (error) {
     console.error('Error generating PDF or sending email:', error)

@@ -58,6 +58,7 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
 
     try {
       const formData = new FormData()
+      formData.append('name', name)
       formData.append('email', email)
       formData.append('companyName', companyName || 'Your Company')
       formData.append('primaryColor', primaryColor)
