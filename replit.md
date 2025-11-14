@@ -10,6 +10,13 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 14, 2025 - Email Logo Update**
+- Replaced styled text Hero Network logo in email template with actual logo image
+- Copied Hero logo (lime green on black) to public/hero-logo.png
+- Updated email template to use <img> tag with responsive sizing (max-width: 300px)
+- Logo URL dynamically uses Replit dev domain in development, falls back to heronetwork.io in production
+- Maintained black background and lime green accent bar in email header
+
 **November 14, 2025 - Filming Tips Content Updates**
 - Updated all 4 filming tips across Modern, Bold, and Classic templates
 - Tip 1 (Light): Changed to "Keep light behind you when filming" without suggesting filming near windows; warns against aiming at windows
