@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useGenerator } from '@/app/context/GeneratorContext'
 
 interface ConversionModalProps {
@@ -14,6 +14,15 @@ export default function ConversionModal({ isOpen, onClose }: ConversionModalProp
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const { companyName, primaryColor, secondaryColor, font, logo, logoAlign, style, removeBackground, processedLogoUrl } = useGenerator()
+
+  useEffect(() => {
+    if (status === 'success') {
+      const timer = setTimeout(() => {
+        handleClose()
+      }, 2500)
+      return () => clearTimeout(timer)
+    }
+  }, [status])
 
   const handleClose = () => {
     setStatus('idle')
