@@ -32,7 +32,7 @@ const rules = [
   },
   {
     icon: FiberManualRecordIcon,
-    title: 'RECORD: Hold Each Shot for 8 Seconds',
+    title: 'RECORD: Hold Each Shot for at least 8 Seconds',
     doText: 'Hit record and hold your shot still for at least 8 seconds.',
     dontText: 'Don\'t take short video clips. Extend the recording to give flexibility when editing.',
   },
