@@ -56,7 +56,7 @@ const modernStyles = StyleSheet.create({
     marginBottom: 4,
   },
   ruleText: {
-    fontSize: 9.5,
+    fontSize: 10.5,
     lineHeight: 1.4,
     marginBottom: 3,
     color: '#333333',
@@ -128,7 +128,7 @@ const boldStyles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   ruleText: {
-    fontSize: 9.5,
+    fontSize: 10.5,
     lineHeight: 1.4,
     marginBottom: 3,
   },
@@ -213,7 +213,7 @@ const classicStyles = StyleSheet.create({
     letterSpacing: 0.8,
   },
   ruleText: {
-    fontSize: 9.5,
+    fontSize: 10.5,
     lineHeight: 1.4,
     marginBottom: 4,
     color: '#333333',
