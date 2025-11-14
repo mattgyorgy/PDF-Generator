@@ -281,7 +281,7 @@ export default function LivePreview() {
   }
 
   return (
-    <div className="bg-white shadow-2xl rounded-lg overflow-y-auto w-full max-w-[595px]" style={{ maxHeight: '842px' }}>
+    <div className="bg-white shadow-2xl rounded-lg overflow-y-auto w-full max-w-[595px] h-[842px]">
       {style === 'modern' && renderModernStyle()}
       {style === 'bold' && renderBoldStyle()}
       {style === 'classic' && renderClassicStyle()}
