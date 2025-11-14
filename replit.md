@@ -10,6 +10,21 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 14, 2025 - Filming Tips Content Updates**
+- Updated all 4 filming tips across Modern, Bold, and Classic templates
+- Tip 1 (Light): Changed to "Keep light behind you" without suggesting filming near windows; warns against aiming at light/windows
+- Tip 2 (Stability): Removed vertical/horizontal orientation advice; kept slow movement guidance ("pan very slowly and smoothly")
+- Tip 3 (Recording Duration): Changed from 10 seconds to 8 seconds minimum; removed "most important tip" language; added editing flexibility message
+- Tip 4 (Variety): Changed from "More angles better" to "Vary height, treat phone as picture frame, everything intentional"
+- Changes applied consistently across both LivePreview.tsx (on-screen preview) and PdfDocument.tsx (generated PDF)
+
+**November 14, 2025 - Pipedrive Name Splitting**
+- Enhanced Pipedrive integration to split full names into first and last name fields
+- Name parsing: first word = first name, remaining words = last name (e.g., "Mary Jane Smith" → "Mary" + "Jane Smith")
+- Updated createPerson() to accept firstName and lastName as separate parameters
+- Modified Pipedrive API calls to send first_name and last_name fields separately
+- Handles edge cases: single names (lastName becomes empty string), multi-word last names
+
 **November 14, 2025 - Pipedrive CRM Integration**
 - Integrated Pipedrive API to automatically capture leads when users download filming guides
 - Created comprehensive Pipedrive utility library (app/lib/pipedrive.ts) with:
