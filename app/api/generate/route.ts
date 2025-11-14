@@ -181,11 +181,30 @@ export async function POST(request: NextRequest) {
       </html>
     `
 
+    const emailText = `
+Your Custom Filming Guide is Ready!
+
+Great job creating your personalized filming guide! We've attached your professional PDF below.
+
+Send this to your clients before every video shoot to ensure you get high-quality footage every single time.
+
+Pro Tip: Save this PDF to your cloud storage and share it with every new client at the start of your project. Consistent quality starts with clear guidelines.
+
+Learn more about Hero Network at https://heronetwork.io
+
+Questions or need help? Visit heronetwork.io to learn how we help teams create effortless video content.
+
+---
+Powered by Hero Network
+Effortless Video Storytelling For Teams That Move Fast
+    `.trim()
+
     const { data, error } = await resend.emails.send({
       from: 'Hero Network <hello@heronetwork.io>',
       to: [email],
       subject: "Your Custom Filming Guide is Ready! 🎬",
       html: emailHtml,
+      text: emailText,
       attachments: [
         {
           filename: `${companyName.replace(/[^a-z0-9]/gi, '_')}_Filming_Guide.pdf`,
