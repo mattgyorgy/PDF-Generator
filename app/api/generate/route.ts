@@ -105,12 +105,7 @@ export async function POST(request: NextRequest) {
                 <!-- Header with Logo -->
                 <tr>
                   <td style="background-color: #000000; padding: 40px 40px 30px; text-align: center;">
-                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 32px; font-weight: 700; color: #D4FB5D; letter-spacing: -0.5px;">
-                      hero<span style="color: #D4FB5D;">»</span>
-                    </div>
-                    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size: 11px; font-weight: 600; color: #D4FB5D; letter-spacing: 2px; margin-top: 4px;">
-                      NETWORK
-                    </div>
+                    <img src="${process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}/hero-logo.png` : 'https://heronetwork.io/hero-logo.png'}" alt="Hero Network" style="max-width: 300px; width: 100%; height: auto; display: block; margin: 0 auto;" />
                   </td>
                 </tr>
                 
