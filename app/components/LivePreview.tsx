@@ -94,7 +94,7 @@ export default function LivePreview() {
     const bodyTextColor = '#333333' // Modern style always has white background
     
     return (
-      <div className="p-9 flex flex-col h-full" style={{ fontFamily }}>
+      <div className="p-9 flex flex-col h-full bg-white" style={{ fontFamily }}>
         <div className="text-center mb-5">
           {displayLogoUrl ? (
             <img
@@ -281,7 +281,7 @@ export default function LivePreview() {
   }
 
   return (
-    <div className="bg-white shadow-2xl rounded-lg overflow-y-auto w-full max-w-[595px] h-[842px]">
+    <div className="shadow-2xl rounded-lg overflow-y-auto w-full max-w-[595px] h-[842px]">
       {style === 'modern' && renderModernStyle()}
       {style === 'bold' && renderBoldStyle()}
       {style === 'classic' && renderClassicStyle()}
