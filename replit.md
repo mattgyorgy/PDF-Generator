@@ -10,6 +10,14 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 14, 2025 - Filming Tips Text Refinements**
+- Updated all filming tips with improved clarity and softer tone
+- Tip 2 (Stability): Added "a tripod" as option; changed em-dash to commas: "use two hands, a tripod, or prop it on a surface"
+- Tip 3 (Recording): Removed "still" for clarity: "Hit record and hold your shot for at least 8 seconds"
+- Tip 4 (Variety): Added "try" to make less prescriptive: "try to capture at least three different shots"
+- Tip 5 (Send): Softened tone from "Don't" to "Try not to"; changed "shrink and ruin your file!" to "can shrink the file"
+- All changes applied consistently to both LivePreview.tsx and PdfDocument.tsx
+
 **November 14, 2025 - Email Logo Update**
 - Replaced styled text Hero Network logo in email template with actual logo image
 - Copied Hero logo (lime green on black) to public/hero-logo.png
