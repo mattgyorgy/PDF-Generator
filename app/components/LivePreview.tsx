@@ -27,19 +27,19 @@ const rules = [
   {
     icon: VideocamIcon,
     title: 'STABILITY: Stay Steady & Move Smoothly',
-    doText: 'Keep your phone as steady as possible—use two hands or prop it on a surface.',
+    doText: 'Keep your phone as steady as possible, use two hands, a tripod, or prop it on a surface.',
     dontText: 'Avoid shaky, random camera movements. If you move, pan very slowly and smoothly in one direction.',
   },
   {
     icon: FiberManualRecordIcon,
     title: 'RECORD: Hold Each Shot for at least 8 Seconds',
-    doText: 'Hit record and hold your shot still for at least 8 seconds.',
+    doText: 'Hit record and hold your shot for at least 8 seconds.',
     dontText: 'Don\'t take short video clips. Extend the recording to give flexibility when editing.',
   },
   {
     icon: GridViewIcon,
     title: 'VARIETY: Get 3 Angles of Everything',
-    doText: 'For every one subject, capture at least three different shots:',
+    doText: 'For every one subject, try to capture at least three different shots:',
     varietyShots: [
       { label: 'WIDE', description: 'Show the whole room or scene.' },
       { label: 'MEDIUM', description: 'Show the subject or action.' },
@@ -52,7 +52,7 @@ const rules = [
     icon: CloudUploadIcon,
     title: 'SEND: Use the Special Link',
     doText: 'Use the secure upload link I\'ve provided. This sends the full, original, high-quality file.',
-    dontText: 'Don\'t text or email the video. (Those services shrink and ruin your file!)',
+    dontText: 'Try not to text or email the video. (Those services can shrink the file)',
   },
 ]
 
