@@ -176,7 +176,7 @@ export async function POST(request: NextRequest) {
       </html>
     `
 
-    await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'Hero Network <onboarding@resend.dev>',
       to: [email],
       subject: "Your Custom Filming Guide is Ready! 🎬",
@@ -184,11 +184,20 @@ export async function POST(request: NextRequest) {
       attachments: [
         {
           filename: `${companyName.replace(/[^a-z0-9]/gi, '_')}_Filming_Guide.pdf`,
-          content: pdfBuffer.toString('base64'),
+          content: pdfBuffer,
         },
       ],
     })
 
+    if (error) {
+      console.error('Resend API error:', error)
+      return NextResponse.json(
+        { error: 'Failed to send email via Resend' },
+        { status: 500 }
+      )
+    }
+
+    console.log('Email sent successfully:', data)
     return NextResponse.json({ status: 'ok' }, { status: 200 })
   } catch (error) {
     console.error('Error generating PDF or sending email:', error)
