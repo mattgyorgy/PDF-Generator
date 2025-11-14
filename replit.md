@@ -10,6 +10,12 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 14, 2025 - Email Logo Removed for Better Deliverability**
+- Removed logo image from email template to improve email deliverability and cross-client compatibility
+- Replaced image with styled text "HERO NETWORK" in lime green (#D4FB5D) on black background
+- Kept professional black header with lime green accent bar for brand consistency
+- Eliminates external image loading issues and improves spam filter compatibility
+
 **November 14, 2025 - Filming Tips Text Refinements**
 - Updated all filming tips with improved clarity and softer tone
 - Tip 2 (Stability): Added "a tripod" as option; changed em-dash to commas: "use two hands, a tripod, or prop it on a surface"

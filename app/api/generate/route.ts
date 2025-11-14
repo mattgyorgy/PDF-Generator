@@ -102,10 +102,12 @@ export async function POST(request: NextRequest) {
               <!-- Main Container -->
               <table role="presentation" style="max-width: 600px; width: 100%; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
                 
-                <!-- Header with Logo -->
+                <!-- Header -->
                 <tr>
                   <td style="background-color: #000000; padding: 40px 40px 30px; text-align: center;">
-                    <img src="${process.env.REPLIT_DEV_DOMAIN ? `https://${process.env.REPLIT_DEV_DOMAIN}/hero-logo.png` : 'https://heronetwork.io/hero-logo.png'}" alt="Hero Network" style="max-width: 300px; width: 100%; height: auto; display: block; margin: 0 auto;" />
+                    <h2 style="margin: 0; font-size: 32px; font-weight: 700; color: #D4FB5D; letter-spacing: -0.5px;">
+                      HERO NETWORK
+                    </h2>
                   </td>
                 </tr>
                 
