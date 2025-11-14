@@ -94,7 +94,7 @@ export default function LivePreview() {
     const bodyTextColor = '#333333' // Modern style always has white background
     
     return (
-      <div className="p-9 flex flex-col min-h-full" style={{ fontFamily }}>
+      <div className="p-9 flex flex-col h-full" style={{ fontFamily }}>
         <div className="text-center mb-5">
           {displayLogoUrl ? (
             <img
@@ -156,7 +156,7 @@ export default function LivePreview() {
     const bodyTextColor = isLightColor(primaryColor) ? '#000000' : '#ffffff'
     
     return (
-      <div className="p-9 flex flex-col min-h-full" style={{ fontFamily, backgroundColor: primaryColor }}>
+      <div className="p-9 flex flex-col h-full" style={{ fontFamily, backgroundColor: primaryColor }}>
         <div className="text-center mb-4">
           {displayLogoUrl ? (
             <img
@@ -220,7 +220,7 @@ export default function LivePreview() {
     const bodyTextColor = '#333333' // Classic style always has light amber background
     
     return (
-      <div className="p-9 flex flex-col min-h-full bg-amber-50" style={{ fontFamily }}>
+      <div className="p-9 flex flex-col h-full bg-amber-50" style={{ fontFamily }}>
         <div className="text-center mb-5 pb-3 border-b-2 border-gray-400">
           {displayLogoUrl ? (
             <img
