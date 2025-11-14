@@ -103,7 +103,8 @@ export async function getOrCreateOrganization(companyName: string): Promise<numb
 }
 
 export async function createPerson(
-  name: string,
+  firstName: string,
+  lastName: string,
   email: string,
   orgId: number
 ): Promise<number | null> {
@@ -116,7 +117,8 @@ export async function createPerson(
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name,
+          first_name: firstName,
+          last_name: lastName,
           email: [{ value: email, primary: true }],
           org_id: orgId,
         }),
@@ -299,13 +301,17 @@ export async function captureLead(
   try {
     console.log(`Starting Pipedrive lead capture for ${name} at ${companyName}`)
 
+    const nameParts = name.trim().split(/\s+/)
+    const firstName = nameParts[0] || name
+    const lastName = nameParts.slice(1).join(' ') || ''
+
     const orgId = await getOrCreateOrganization(companyName)
     if (!orgId) {
       console.error('Failed to get or create organization')
       return false
     }
 
-    const personId = await createPerson(name, email, orgId)
+    const personId = await createPerson(firstName, lastName, email, orgId)
     if (!personId) {
       console.error('Failed to create person')
       return false

@@ -21,20 +21,20 @@ const rules = [
   {
     icon: WbSunnyIcon,
     title: 'LIGHT: Find the Light',
-    doText: 'Good light is your best friend. Film near windows or in brightly-lit areas.',
-    dontText: 'Don\'t film in dark, shadowy corners. If your video looks grainy, you need more light!',
+    doText: 'Try to keep the light behind you when filming.',
+    dontText: 'Don\'t aim towards the light. Don\'t aim towards the windows if you can avoid it.',
   },
   {
     icon: VideocamIcon,
     title: 'STABILITY: Stay Steady & Move Smoothly',
-    doText: 'Film both vertical (for social media) and horizontal. Keep your phone as steady as possible—use two hands or prop it on a surface.',
-    dontText: 'Avoid shaky, random camera movements. If you move, pan slowly and smoothly in one direction.',
+    doText: 'Keep your phone as steady as possible—use two hands or prop it on a surface.',
+    dontText: 'Avoid shaky, random camera movements. If you move, pan very slowly and smoothly in one direction.',
   },
   {
     icon: FiberManualRecordIcon,
-    title: 'RECORD: Hold Each Shot for 10 Seconds',
-    doText: 'This is the most important tip! Hit record and hold your shot perfectly still for at least 10 seconds.',
-    dontText: 'Don\'t just tap "record" and "stop." We need those long, stable clips to edit with!',
+    title: 'RECORD: Hold Each Shot for 8 Seconds',
+    doText: 'Hit record and hold your shot still for at least 8 seconds.',
+    dontText: 'Don\'t take short video clips. Extend the recording to give flexibility when editing.',
   },
   {
     icon: GridViewIcon,
@@ -45,7 +45,7 @@ const rules = [
       { label: 'MEDIUM', description: 'Show the subject or action.' },
       { label: 'TIGHT', description: 'Get a close-up of the details (hands, a product, a sign).' },
     ],
-    varietyNote: 'More angles and options are always better!',
+    varietyNote: 'Try varying your height as well. Treat your phone as a picture frame—everything you see should be there on purpose.',
     dontText: '',
   },
   {
