@@ -12,7 +12,7 @@ Preferred communication style: Simple, everyday language.
 
 **November 14, 2025 - Filming Tips Content Updates**
 - Updated all 4 filming tips across Modern, Bold, and Classic templates
-- Tip 1 (Light): Changed to "Keep light behind you" without suggesting filming near windows; warns against aiming at light/windows
+- Tip 1 (Light): Changed to "Keep light behind you when filming" without suggesting filming near windows; warns against aiming at windows
 - Tip 2 (Stability): Removed vertical/horizontal orientation advice; kept slow movement guidance ("pan very slowly and smoothly")
 - Tip 3 (Recording Duration): Changed from 10 seconds to 8 seconds minimum; removed "most important tip" language; added editing flexibility message; title reads "Hold Each Shot for at least 8 Seconds"
 - Tip 4 (Variety): Changed from "More angles better" to "Vary height, treat phone as picture frame, everything intentional"

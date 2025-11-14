@@ -249,7 +249,7 @@ const rules = [
   {
     title: 'LIGHT: Find the Light',
     doText: 'Try to keep the light behind you when filming.',
-    dontText: "Don't aim towards the light. Don't aim towards the windows if you can avoid it.",
+    dontText: "Don't aim towards the windows if you can avoid it.",
   },
   {
     title: 'STABILITY: Stay Steady & Move Smoothly',
