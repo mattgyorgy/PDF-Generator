@@ -10,6 +10,21 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+**November 14, 2025 - Background Fill Fix for All Templates**
+- Fixed Classic template background not extending to full preview height
+- Removed `bg-white` from outer container in LivePreview.tsx to allow template backgrounds to fill completely
+- Added explicit `bg-white` to Modern template's inner div to preserve white background
+- All three templates (Modern, Bold, Classic) now fill entire 842px preview height without white gaps
+- Each template maintains correct background color: Modern (white), Bold (custom primary color), Classic (amber #fef9f3)
+
+**November 14, 2025 - Increased Padding on All Templates**
+- Increased padding on all three templates while maintaining single-page PDF layout
+- Modern: 35pt → 45pt padding (29% increase)
+- Bold: 28pt → 38pt padding (36% increase)
+- Classic: 35pt → 45pt padding (29% increase)
+- Made minor spacing adjustments to ensure all content still fits on single A4 page
+- All templates verified to have comfortable headroom: Modern (~240pt), Bold (~70pt), Classic (~100pt)
+
 **November 14, 2025 - Single-Page PDF Optimization & Email Fixes**
 - Optimized PDF layout spacing to ensure all content fits on a single A4 page (842pt height)
 - Reduced padding, margins, and spacing across all three styles (Modern: ~667pt, Bold: ~825pt, Classic: ~797pt)
